@@ -53,6 +53,8 @@ Open `index.html` and it works; push it to GitHub and Pages serves it as-is.
 - Original inline SVG: icon set, logo, product elevation drawings, and a single-line system schematic.
 - SEO: per-page title and description, Open Graph and Twitter tags, canonical URLs, JSON-LD
   (`Organization`, `Product`, `Article`), `sitemap.xml`, `robots.txt`.
+- 24 designed 1200x630 share cards in `images/og/` — one per shareable page, with the brand
+  lockup and the page's proposition typeset in, not just a cropped photograph.
 - Print stylesheet, so spec sheets and legal pages print cleanly.
 - Every path is relative — the site works from a sub-folder such as
   `https://asharudheen-code.github.io/gridora/`.
@@ -95,6 +97,7 @@ gridora/
 │   └── main.js              Global initialisation (loaded last)
 │
 ├── images/                  hero · home · about · solutions · products · projects · resources
+│   ├── og/                  24 share cards, 1200x630
 │   └── placeholder.svg      Shown automatically if a photograph is missing
 ├── videos/                  hero-energy-storage.mp4 + notes on how it was prepared
 ├── icons/                   Standalone SVG assets
@@ -290,6 +293,36 @@ Common places to edit:
 | Project narratives | `projects/*.html` |
 | Article text | `resources/*.html` |
 | Footer columns | the `<footer>` block in every page |
+
+---
+
+## Share cards (Open Graph)
+
+Every shareable page points at its own 1200 x 630 card in `images/og/`. They are typeset rather
+than cropped: brand lockup top-left, the page's proposition set in Poppins over a navy scrim, with
+the section photograph pushed back behind it. A share card is read at about 500 px wide in a feed,
+so the message has to survive being small.
+
+Each page emits `og:image`, `og:image:width`, `og:image:height`, `og:image:alt`, `og:locale`,
+`twitter:card` (`summary_large_image`) and `twitter:image:alt`.
+
+| Card | Used by |
+| --- | --- |
+| `og-home.jpg` | Home |
+| `og-about` · `og-solutions` · `og-products` · `og-projects` · `og-resources` · `og-contact` | The matching section page |
+| `og-legal.jpg` | Privacy, Terms, Image Credits |
+| `og-<product-slug>.jpg` | Each product detail page |
+| `og-<project-slug>.jpg` | Each project detail page |
+| `og-<article-slug>.jpg` | Each article |
+
+`404.html` deliberately has none — it is `noindex` and never meant to be shared.
+
+**To change a card**, either drop a replacement 1200 x 630 JPEG over the existing filename, or edit
+the entry in `og.py` in the authoring tools and regenerate. The card text lives in that file, not in
+the HTML.
+
+**After changing one, re-scrape it.** Facebook, LinkedIn and X cache OG images aggressively — the old
+card can persist for days otherwise. Use each platform's own debugger/post-inspector to force a refresh.
 
 ---
 
