@@ -55,7 +55,7 @@ Open `index.html` and it works; push it to GitHub and Pages serves it as-is.
   (`Organization`, `Product`, `Article`), `sitemap.xml`, `robots.txt`.
 - Print stylesheet, so spec sheets and legal pages print cleanly.
 - Every path is relative — the site works from a sub-folder such as
-  `https://username.github.io/gridora/`.
+  `https://asharudheen-code.github.io/gridora/`.
 
 ---
 
@@ -145,18 +145,17 @@ Python is only a convenience for local previewing. **It is not needed to build o
 6. Choose branch **main**.
 7. Choose folder **/ (root)**.
 8. Click **Save**.
-9. Wait a minute, then open the URL GitHub shows you, e.g. `https://username.github.io/gridora/`.
+9. Wait a minute, then open the URL GitHub shows you.
 
 No build command, no workflow file and no environment variables are required.
 
-**Two things to update after your first deploy**, both of which currently point at the placeholder
-URL `https://username.github.io/gridora/`:
+This site is already published at **https://asharudheen-code.github.io/gridora/**, and the absolute
+URLs that have to match it — `<link rel="canonical">`, `og:url`, `og:image`, `sitemap.xml` and the
+`Sitemap:` line in `robots.txt` — are all set to that address.
 
-- `sitemap.xml` and `robots.txt` — replace with your real published URL.
-- The `<link rel="canonical">` and `og:url` / `og:image` tags in each HTML file — find and replace
-  the placeholder URL across the folder.
-
-Everything else uses relative paths and needs no change.
+**If you move the site to another domain**, those absolute URLs need to change with it. Everything
+else is relative and needs no change. The fastest way is a find-and-replace of
+`https://asharudheen-code.github.io/gridora/` across `*.html`, `sitemap.xml` and `robots.txt`.
 
 ---
 

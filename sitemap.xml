@@ -1,133 +1,133 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Replace https://username.github.io/gridora/ with your own published URL before submitting this sitemap. -->
+<!-- Generated from SITE_URL in common.py. If the site moves to another domain, change it there and rebuild. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://username.github.io/gridora/index.html</loc>
+    <loc>https://asharudheen-code.github.io/gridora/index.html</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://username.github.io/gridora/about.html</loc>
+    <loc>https://asharudheen-code.github.io/gridora/about.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://username.github.io/gridora/solutions.html</loc>
+    <loc>https://asharudheen-code.github.io/gridora/solutions.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://username.github.io/gridora/products.html</loc>
+    <loc>https://asharudheen-code.github.io/gridora/products.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://username.github.io/gridora/projects.html</loc>
+    <loc>https://asharudheen-code.github.io/gridora/projects.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://username.github.io/gridora/resources.html</loc>
+    <loc>https://asharudheen-code.github.io/gridora/resources.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://username.github.io/gridora/contact.html</loc>
+    <loc>https://asharudheen-code.github.io/gridora/contact.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://username.github.io/gridora/privacy.html</loc>
+    <loc>https://asharudheen-code.github.io/gridora/privacy.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
   <url>
-    <loc>https://username.github.io/gridora/terms.html</loc>
+    <loc>https://asharudheen-code.github.io/gridora/terms.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
   <url>
-    <loc>https://username.github.io/gridora/credits.html</loc>
+    <loc>https://asharudheen-code.github.io/gridora/credits.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
   <url>
-    <loc>https://username.github.io/gridora/products/bess-215.html</loc>
+    <loc>https://asharudheen-code.github.io/gridora/products/bess-215.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://username.github.io/gridora/products/bess-500.html</loc>
+    <loc>https://asharudheen-code.github.io/gridora/products/bess-500.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://username.github.io/gridora/products/bess-1000.html</loc>
+    <loc>https://asharudheen-code.github.io/gridora/products/bess-1000.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://username.github.io/gridora/products/rack-hv.html</loc>
+    <loc>https://asharudheen-code.github.io/gridora/products/rack-hv.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://username.github.io/gridora/projects/solar-storage.html</loc>
+    <loc>https://asharudheen-code.github.io/gridora/projects/solar-storage.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://username.github.io/gridora/projects/industrial-facility.html</loc>
+    <loc>https://asharudheen-code.github.io/gridora/projects/industrial-facility.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://username.github.io/gridora/projects/microgrid.html</loc>
+    <loc>https://asharudheen-code.github.io/gridora/projects/microgrid.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://username.github.io/gridora/projects/ev-charging-hub.html</loc>
+    <loc>https://asharudheen-code.github.io/gridora/projects/ev-charging-hub.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://username.github.io/gridora/projects/wind-storage-hybrid.html</loc>
+    <loc>https://asharudheen-code.github.io/gridora/projects/wind-storage-hybrid.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://username.github.io/gridora/projects/utility-bess.html</loc>
+    <loc>https://asharudheen-code.github.io/gridora/projects/utility-bess.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://username.github.io/gridora/resources/future-of-energy-storage-india.html</loc>
+    <loc>https://asharudheen-code.github.io/gridora/resources/future-of-energy-storage-india.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://username.github.io/gridora/resources/bess-safety-essentials.html</loc>
+    <loc>https://asharudheen-code.github.io/gridora/resources/bess-safety-essentials.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://username.github.io/gridora/resources/solar-storage-case-study.html</loc>
+    <loc>https://asharudheen-code.github.io/gridora/resources/solar-storage-case-study.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://username.github.io/gridora/resources/battery-lifecycle-management.html</loc>
+    <loc>https://asharudheen-code.github.io/gridora/resources/battery-lifecycle-management.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://username.github.io/gridora/resources/sizing-storage-commercial-site.html</loc>
+    <loc>https://asharudheen-code.github.io/gridora/resources/sizing-storage-commercial-site.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://username.github.io/gridora/resources/microgrid-commissioning-note.html</loc>
+    <loc>https://asharudheen-code.github.io/gridora/resources/microgrid-commissioning-note.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>

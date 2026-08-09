@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://username.github.io/gridora/sitemap.xml
+Sitemap: https://asharudheen-code.github.io/gridora/sitemap.xml
