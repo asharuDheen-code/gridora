@@ -1,0 +1,329 @@
+/* ==========================================================================
+   Gridora — responsive.css
+   Breakpoints are deliberate, not inherited: 1180 (small desktop),
+   1024 (tablet landscape), 860 (tablet portrait), 640 (large phone),
+   400 (small phone). Load this file last.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Small desktop — 1180px and below
+   -------------------------------------------------------------------------- */
+@media (max-width: 1180px) {
+  :root { --section-y: 84px; --gutter: 28px; }
+
+  .split { gap: 48px; }
+  .tech__grid { gap: 48px; }
+  .footer__top { grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr)); gap: 40px; }
+  .footer__brand { grid-column: span 3; }
+  .hero__panel { padding-left: var(--gutter); padding-right: 40px; }
+  .nav__link { padding: 9px 10px; font-size: 0.8125rem; }
+}
+
+/* --------------------------------------------------------------------------
+   Tablet landscape — 1024px and below
+   Navigation collapses here: seven items plus a CTA no longer fit cleanly.
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  :root { --section-y: 76px; }
+
+  .nav { display: none; }
+  .burger { display: flex; }
+  .header__actions { margin-left: auto; }
+
+  /* Hero becomes stacked: copy first, media as a wide band beneath */
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  .hero__panel {
+    padding: calc(var(--header-h) + 56px) var(--gutter) 56px;
+  }
+  .hero__content { max-width: 100%; }
+  .hero__media {
+    height: 46vw;
+    min-height: 300px;
+    max-height: 460px;
+  }
+  .hero__media img,
+  .hero__media video { position: absolute; }
+  .hero__media::after {
+    background: linear-gradient(180deg, var(--navy) 0%, rgba(8, 26, 43, 0.35) 26%, rgba(8, 26, 43, 0.08) 60%);
+  }
+  .hero__spec { max-width: 100%; }
+
+  /* Two-column tablet rhythm rather than a squeezed desktop grid */
+  .strip__grid { grid-template-columns: 1fr 1fr; }
+  .strip__item:nth-child(2) { border-right: 0; margin-right: 0; padding-right: 0; }
+  .strip__item:nth-child(-n+2) { border-bottom: 1px solid var(--line); padding-bottom: 28px; }
+  .strip__item:nth-child(n+3) { padding-top: 28px; }
+
+  .split,
+  .sol-block__grid { grid-template-columns: 1fr; gap: 40px; }
+  .split--reverse .split__media,
+  .sol-block:nth-child(even) .sol-block__media { order: 0; }
+  .split__content { max-width: 62ch; }
+
+  .process { grid-template-columns: 1fr 1fr; }
+  .process__step { padding-bottom: 30px; margin-bottom: 30px; border-bottom: 1px solid var(--line); }
+  .process__step:nth-child(even) { border-right: 0; margin-right: 0; padding-right: 0; }
+  .process__step:nth-last-child(-n+2) { border-bottom: 0; padding-bottom: 0; margin-bottom: 0; }
+
+  .tech__grid { grid-template-columns: 1fr; gap: 44px; }
+  .tech__list { grid-template-columns: 1fr 1fr; }
+
+  .cta__grid { grid-template-columns: 1fr; gap: 40px; }
+  .cta__aside {
+    border-left: 0;
+    border-top: 1px solid var(--line-dark);
+    padding-left: 0;
+    padding-top: 30px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid--3 { grid-template-columns: 1fr 1fr; }
+  .grid--4 { grid-template-columns: 1fr 1fr; }
+  .card--wide { grid-column: span 2; }
+  .card--wide .card__media { aspect-ratio: 2 / 1; }
+
+  .product-card { grid-template-columns: 1fr; }
+  .product-card__media { padding: 30px 26px; }
+
+  .sol-feature { grid-template-columns: 1fr; }
+  .sol-feature__media { min-height: 0; aspect-ratio: 16 / 9; }
+  .sol-feature__media img { position: absolute; }
+  .sol-feature__body { padding: 34px 30px; }
+
+  .factsheet { grid-template-columns: 1fr 1fr; }
+  .factsheet div:nth-child(2) { border-right: 0; }
+  .factsheet div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+
+  .legal { grid-template-columns: 1fr; gap: 34px; }
+  .toc { position: static; }
+
+  .page-hero__grid { grid-template-columns: 1fr; gap: 26px; align-items: start; }
+  .page-hero__copy { padding-bottom: 0; }
+
+  .article { max-width: 100%; }
+}
+
+/* --------------------------------------------------------------------------
+   Tablet portrait — 860px and below
+   -------------------------------------------------------------------------- */
+@media (max-width: 860px) {
+  :root { --section-y: 64px; --gutter: 24px; }
+
+  .section-head {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    align-items: start;
+    margin-bottom: 40px;
+    padding-bottom: 22px;
+  }
+  .section-head__aside { padding-bottom: 0; }
+
+  .stats { grid-template-columns: 1fr; margin-top: 34px; }
+  .stats__item {
+    padding: 20px 0;
+    margin-right: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 18px;
+  }
+  .stats__item:last-child { border-bottom: 0; padding-bottom: 0; }
+  .stats__value { margin-bottom: 0; }
+  .stats__label { text-align: right; }
+  .bg-navy .stats__item { border-bottom-color: var(--line-dark); }
+
+  .sol-list { grid-template-columns: 1fr; }
+  .sol-list__item:nth-child(odd) { border-right: 0; }
+  .sol-list__item:nth-last-child(-n+2) { border-bottom: 1px solid var(--line); }
+  .sol-list__item:last-child { border-bottom: 0; }
+
+  .tech__list { grid-template-columns: 1fr; }
+  .tech__item:nth-child(odd) { border-right: 0; padding-right: 0; }
+  .tech__item:nth-child(even) { padding-left: 0; }
+
+  .pillars { grid-template-columns: 1fr; }
+  .pillar:nth-child(odd) { border-right: 0; }
+  .pillar:nth-child(even) { padding-left: 0; }
+  .pillar { padding-right: 0; }
+
+  .outcomes { grid-template-columns: 1fr; }
+  .outcomes li {
+    padding: 18px 0;
+    margin: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .outcomes li:last-child { border-bottom: 0; }
+
+  .narrative { grid-template-columns: 1fr; gap: 14px; }
+
+  .keyspec { grid-template-columns: 1fr; }
+  .keyspec div:nth-child(odd) { border-right: 0; }
+  .keyspec div:nth-child(even) { padding-left: 0; }
+
+  .form__row { grid-template-columns: 1fr; }
+
+  .bracket::before, .bracket::after { width: 32px; height: 32px; }
+}
+
+/* --------------------------------------------------------------------------
+   Large phone — 640px and below
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  :root { --section-y: 56px; --gutter: 20px; --header-h: 66px; }
+
+  body { font-size: 15.5px; }
+
+  .hero__panel { padding-top: calc(var(--header-h) + 40px); padding-bottom: 44px; }
+  .hero__actions { gap: 10px; }
+  .hero__actions .btn { flex: 1 1 100%; }
+  .hero__spec { flex-wrap: wrap; gap: 20px 0; }
+  .hero__spec div {
+    flex: 1 1 50%;
+    padding-right: 18px;
+    margin-right: 0;
+  }
+  .hero__spec div:nth-child(2n) { border-right: 0; padding-right: 0; }
+  .hero__media { height: 58vw; min-height: 230px; }
+  .hero__caption { right: 12px; bottom: 12px; font-size: 0.5625rem; padding: 6px 9px; }
+
+  .strip__grid { grid-template-columns: 1fr; }
+  .strip__item {
+    border-right: 0;
+    margin-right: 0;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .strip__item:nth-child(-n+2) { padding-bottom: 22px; }
+  .strip__item:nth-child(n+3) { padding-top: 22px; }
+  .strip__item:last-child { border-bottom: 0; padding-bottom: 0; }
+  .strip__item:first-child { padding-top: 26px; }
+
+  .process { grid-template-columns: 1fr; }
+  .process__step {
+    border-right: 0;
+    margin-right: 0;
+    padding-right: 0;
+    padding-bottom: 26px;
+    margin-bottom: 26px;
+  }
+  .process__step:nth-last-child(-n+2) { border-bottom: 1px solid var(--line); padding-bottom: 26px; margin-bottom: 26px; }
+  .process__step:last-child { border-bottom: 0; padding-bottom: 0; margin-bottom: 0; }
+
+  .grid { gap: 22px; }
+  .grid--3, .grid--2, .grid--4 { grid-template-columns: 1fr; }
+  .card--wide { grid-column: span 1; }
+  .card--wide .card__media { aspect-ratio: 3 / 2; }
+  .card__body { padding: 20px 20px 22px; }
+
+  .sol-feature__body { padding: 28px 22px; }
+  .sol-list__item { padding: 24px 20px; gap: 14px; }
+
+  .product-card__body { padding: 26px 22px 26px; }
+  .product-card__media { padding: 26px 22px; }
+  .product-card__foot { gap: 10px; }
+  .product-card__foot .btn { flex: 1 1 100%; }
+
+  .cta__aside { grid-template-columns: 1fr; gap: 18px; }
+
+  .factsheet { grid-template-columns: 1fr; }
+  .factsheet div { border-right: 0; border-bottom: 1px solid var(--line); padding: 18px 20px; }
+  .factsheet div:last-child { border-bottom: 0; }
+
+  .contact-panel { padding: 32px 24px; }
+
+  .footer { padding-top: 56px; }
+  .footer__top { grid-template-columns: 1fr; gap: 34px; padding-bottom: 40px; }
+  .footer__brand { grid-column: span 1; }
+  .footer__bottom { flex-direction: column; align-items: flex-start; gap: 14px; }
+
+  .spec-table th, .spec-table td { padding: 12px 16px; }
+  .spec-table caption { padding: 15px 16px; }
+
+  .article__lead { font-size: 1.0625rem; }
+
+  .filters { gap: 7px; padding-bottom: 20px; margin-bottom: 28px; }
+  .filter { padding: 9px 14px; font-size: 0.75rem; }
+
+  /* Touch targets */
+  .btn { padding: 14px 22px; min-height: 46px; }
+  .btn--sm { min-height: 42px; }
+  .social a { width: 42px; height: 42px; }
+}
+
+/* --------------------------------------------------------------------------
+   Small phone — 400px and below
+   -------------------------------------------------------------------------- */
+@media (max-width: 400px) {
+  :root { --gutter: 18px; }
+
+  .logo__sub { display: none; }
+  .header__actions .btn { padding: 10px 13px; font-size: 0.75rem; }
+  .hero__spec div { flex: 1 1 100%; border-right: 0; padding-right: 0; }
+  .mobile-nav__link { font-size: 1.2rem; }
+  .notfound__code { font-size: 4.2rem; }
+}
+
+/* --------------------------------------------------------------------------
+   Large desktop — 1600px and above
+   Extra whitespace rather than extra width for text.
+   -------------------------------------------------------------------------- */
+@media (min-width: 1600px) {
+  :root { --section-y: 116px; }
+  .hero { min-height: 720px; }
+  .hero__panel { padding-top: calc(var(--header-h) + 92px); padding-bottom: 92px; }
+}
+
+/* --------------------------------------------------------------------------
+   Print — spec sheets and legal pages get printed in this industry
+   -------------------------------------------------------------------------- */
+@media print {
+  .header, .mobile-nav, .footer, .cta, .breadcrumb, .filters, .btn { display: none !important; }
+  body { color: #000; font-size: 11pt; }
+  .page-hero { padding: 0 0 18pt; background: none; color: #000; }
+  .page-hero__media, .page-hero::before { display: none; }
+  .page-hero__title, .page-hero__copy { color: #000; }
+  .section { padding-block: 12pt; }
+  a[href]::after { content: " (" attr(href) ")"; font-size: 8pt; color: #555; }
+  .spec-table { min-width: 0; }
+}
+
+/* --------------------------------------------------------------------------
+   Single-line schematic
+   The diagram stops being legible below roughly 620px, so it scrolls inside
+   its own container rather than shrinking into illegibility.
+   -------------------------------------------------------------------------- */
+@media (max-width: 860px) {
+  .schematic { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .schematic svg { min-width: 620px; }
+  .schematic__title { flex-direction: column; gap: 4px; }
+}
+
+/* Keep the hero spec figures two-up on small phones rather than stacking
+   into three tall rows. */
+@media (max-width: 400px) {
+  .hero__spec div { flex: 1 1 46%; border-right: 1px solid var(--line-dark); padding-right: 14px; }
+  .hero__spec div:nth-child(2n) { border-right: 0; padding-right: 0; }
+  .hero__spec div:last-child { flex-basis: 100%; border-right: 0; }
+}
+
+/* --------------------------------------------------------------------------
+   Very small phones — 360px and below
+   The logo, the quote button and the hamburger stop fitting on one line at
+   this width, so the header tightens rather than pushing the page sideways.
+   -------------------------------------------------------------------------- */
+@media (max-width: 360px) {
+  .header__inner { gap: 12px; }
+  .logo { gap: 8px; }
+  .logo__mark { width: 26px; height: 26px; }
+  .logo__name { font-size: 0.9375rem; }
+  .header__actions { gap: 8px; }
+  .header__actions .btn { padding: 9px 11px; font-size: 0.6875rem; }
+  .burger { width: 40px; height: 40px; }
+  .field select, .field input, .field textarea { font-size: 0.9375rem; }
+}

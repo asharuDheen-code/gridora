@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found — Gridora</title>
+<meta name="description" content="The page you asked for is not on this site.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#081A2B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%225%22%20fill%3D%22%23081A2B%22%2F%3E%3Crect%20x%3D%227.6%22%20y%3D%226.4%22%20width%3D%2216.8%22%20height%3D%2220.2%22%20rx%3D%221.6%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.7%22%2F%3E%3Cpath%20d%3D%22M12.6%206.4V4.4h6.8v2%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.7%22%2F%3E%3Cpath%20d%3D%22M18.3%209.6%2012.2%2018.6h3.7l-1.2%205.8%206.1-9.2h-3.7z%22%20fill%3D%22%23E5A51C%22%2F%3E%3C%2Fsvg%3E">
+<style>
+  :root { --navy:#081A2B; --gold:#E5A51C; --dim:#9BAEC0; --line:rgba(255,255,255,.14); }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; min-height:100vh; background:var(--navy); color:var(--dim);
+    font-family:"Inter","Segoe UI",Arial,sans-serif; font-size:16px; line-height:1.65;
+    display:grid; place-items:center; padding:48px 24px;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size:68px 68px;
+  }
+  .wrap { width:100%; max-width:620px; }
+  .brand { display:inline-flex; align-items:center; gap:11px; color:#fff; text-decoration:none; margin-bottom:52px; }
+  .brand svg { width:30px; height:30px; }
+  .brand b { font-family:"Poppins","Segoe UI",Arial,sans-serif; font-weight:600; font-size:1.0625rem; letter-spacing:-.025em; }
+  .code { font-family:"Poppins","Segoe UI",Arial,sans-serif; font-weight:600; color:var(--gold);
+          font-size:clamp(4.5rem,3rem + 8vw,9rem); line-height:.9; letter-spacing:-.05em; margin:0 0 22px; }
+  h1 { font-family:"Poppins","Segoe UI",Arial,sans-serif; font-weight:600; color:#fff;
+       font-size:clamp(1.55rem,1.2rem + 1.6vw,2.3rem); letter-spacing:-.028em; line-height:1.12; margin:0 0 14px; }
+  p { margin:0 0 30px; max-width:46ch; }
+  .btn { display:inline-flex; align-items:center; gap:10px; padding:14px 26px; background:var(--gold);
+         color:var(--navy); font-weight:600; font-size:.9375rem; text-decoration:none; border-radius:2px;
+         border:1px solid var(--gold); }
+  .btn:hover { background:#C4880C; border-color:#C4880C; }
+  .links { margin-top:44px; padding-top:24px; border-top:1px solid var(--line);
+           display:flex; flex-wrap:wrap; gap:10px 26px; font-size:.875rem; }
+  .links a { color:var(--dim); text-decoration:none; }
+  .links a:hover { color:var(--gold); }
+  a:focus-visible, .btn:focus-visible { outline:2px solid var(--gold); outline-offset:3px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="brand" href="./" data-home>
+    <svg viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false"><rect x="7.6" y="6.4" width="16.8" height="20.2" rx="1.6" stroke="currentColor" stroke-width="1.7"/><path d="M12.6 6.4V4.4h6.8v2" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M18.3 9.6 12.2 18.6h3.7l-1.2 5.8 6.1-9.2h-3.7z" fill="#E5A51C"/></svg>
+    <b>Gridora</b>
+  </a>
+
+  <p class="code">404</p>
+  <h1>Page not found</h1>
+  <p>The address you followed does not match anything on this site. It may have been moved, or the link
+    may have been mistyped.</p>
+  <a class="btn" href="./" data-home>Back to home
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"
+         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+  </a>
+
+  <nav class="links" aria-label="Site sections">
+    <a href="about.html" data-rel="about.html">About Us</a>
+    <a href="solutions.html" data-rel="solutions.html">Solutions</a>
+    <a href="products.html" data-rel="products.html">Products</a>
+    <a href="projects.html" data-rel="projects.html">Projects</a>
+    <a href="resources.html" data-rel="resources.html">Resources</a>
+    <a href="contact.html" data-rel="contact.html">Contact</a>
+  </nav>
+</div>
+
+<script>
+/* The browser URL still points at the missing path, so work out the site root
+   and rewrite every link against it. On *.github.io the first path segment is
+   the repository name; elsewhere the site is assumed to sit at the domain root. */
+(function () {
+  var segments = location.pathname.split('/').filter(Boolean);
+  var root = '/';
+  if (/\.github\.io$/i.test(location.hostname) && segments.length) {
+    root = '/' + segments[0] + '/';
+  }
+  document.querySelectorAll('[data-home]').forEach(function (el) { el.setAttribute('href', root); });
+  document.querySelectorAll('[data-rel]').forEach(function (el) {
+    el.setAttribute('href', root + el.getAttribute('data-rel'));
+  });
+})();
+</script>
+</body>
+</html>

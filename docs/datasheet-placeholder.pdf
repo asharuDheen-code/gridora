@@ -1,0 +1,63 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 740 >>
+stream
+BT
+/F1 20 Tf
+1 0 0 1 60 780 Tm
+(Gridora - datasheet placeholder) Tj
+/F1 11 Tf
+1 0 0 1 60 742 Tm
+() Tj
+/F1 11 Tf
+1 0 0 1 60 722 Tm
+(This PDF ships with the website template so that the download link) Tj
+/F1 11 Tf
+1 0 0 1 60 702 Tm
+(on each product page resolves to a real file instead of a 404.) Tj
+/F1 11 Tf
+1 0 0 1 60 682 Tm
+() Tj
+/F1 11 Tf
+1 0 0 1 60 662 Tm
+(It is NOT a product datasheet. Replace this file at) Tj
+/F1 11 Tf
+1 0 0 1 60 642 Tm
+(docs/datasheet-placeholder.pdf with your own document, or point the) Tj
+/F1 11 Tf
+1 0 0 1 60 622 Tm
+(download links on the product pages at per-product PDFs.) Tj
+/F1 11 Tf
+1 0 0 1 60 602 Tm
+() Tj
+/F1 11 Tf
+1 0 0 1 60 582 Tm
+(Gridora is a placeholder brand used for a demonstration build.) Tj
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000311 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1102
+%%EOF
