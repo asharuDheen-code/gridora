@@ -64,7 +64,7 @@ window.GRIDORA.data = {
       cooling: 'Liquid',
       summary: 'A liquid-cooled outdoor cabinet for commercial and light industrial sites. Ships as one unit, sits on a prepared plinth and parallels with further cabinets as the load grows.',
       drawing: 'cabinet',
-      page: 'products/bess-215.html'
+      page: 'products/bess-215/'
     },
     {
       id: 'bess-500',
@@ -78,7 +78,7 @@ window.GRIDORA.data = {
       cooling: 'Liquid',
       summary: 'The step up from the 215 for larger industrial loads and small utility connections, with the same controls and service access in a wider enclosure.',
       drawing: 'cabinet-wide',
-      page: 'products/bess-500.html'
+      page: 'products/bess-500/'
     },
     {
       id: 'bess-1000',
@@ -92,7 +92,7 @@ window.GRIDORA.data = {
       cooling: 'Liquid',
       summary: 'A 20-foot containerised block for utility and large industrial projects. Arrives integrated and tested, with fire detection, HVAC and auxiliary distribution inside the envelope.',
       drawing: 'container',
-      page: 'products/bess-1000.html'
+      page: 'products/bess-1000/'
     },
     {
       id: 'rack-hv',
@@ -106,7 +106,7 @@ window.GRIDORA.data = {
       cooling: 'Air or liquid',
       summary: 'The building block behind the cabinets and containers, available separately for integrators who are designing their own enclosure or retrofitting an existing battery room.',
       drawing: 'rack',
-      page: 'products/rack-hv.html'
+      page: 'products/rack-hv/'
     },
     {
       id: 'pcs-250',
@@ -150,7 +150,7 @@ window.GRIDORA.data = {
       categories: ['utility', 'renewable'],
       summary: 'A storage block co-located with a large ground-mount solar plant, shifting midday surplus into the evening peak and holding the export profile inside the ramp limits set by the grid code.',
       image: 'images/projects/desert-solar-plant',
-      page: 'projects/solar-storage.html',
+      page: 'projects/solar-storage/',
       featured: true
     },
     {
@@ -163,7 +163,7 @@ window.GRIDORA.data = {
       categories: ['industrial', 'commercial'],
       summary: 'Demand management for a continuous-process plant, capping billed maximum demand and carrying the site through short interruptions on the incoming feeder.',
       image: 'images/solutions/bess-cabinet-row',
-      page: 'projects/industrial-facility.html'
+      page: 'projects/industrial-facility/'
     },
     {
       id: 'microgrid',
@@ -175,7 +175,7 @@ window.GRIDORA.data = {
       categories: ['microgrid', 'renewable'],
       summary: 'A grid-forming system for a campus that needs to run independently for extended periods, sequencing rooftop solar, storage and a standby generator under one controller.',
       image: 'images/projects/solar-farm-village',
-      page: 'projects/microgrid.html'
+      page: 'projects/microgrid/'
     },
     {
       id: 'ev-charging-hub',
@@ -187,7 +187,7 @@ window.GRIDORA.data = {
       categories: ['commercial'],
       summary: 'Storage buffering a high-power charging site so that simultaneous fast-charge sessions are served without re-sizing the distribution connection.',
       image: 'images/solutions/bess-cabinets-hills',
-      page: 'projects/ev-charging-hub.html'
+      page: 'projects/ev-charging-hub/'
     },
     {
       id: 'wind-storage-hybrid',
@@ -199,7 +199,7 @@ window.GRIDORA.data = {
       categories: ['utility', 'renewable'],
       summary: 'A hybrid park where wind generation and storage share a single connection point and a single dispatch schedule, smoothing output through gusty and calm periods alike.',
       image: 'images/projects/wind-turbines-plain',
-      page: 'projects/wind-storage-hybrid.html'
+      page: 'projects/wind-storage-hybrid/'
     },
     {
       id: 'utility-bess',
@@ -211,7 +211,7 @@ window.GRIDORA.data = {
       categories: ['utility'],
       summary: 'A standalone storage yard providing bulk energy shifting and reserve capacity, built in blocks so that commissioning and revenue start before the final block lands.',
       image: 'images/solutions/utility-bess-yard',
-      page: 'projects/utility-bess.html'
+      page: 'projects/utility-bess/'
     }
   ],
 
@@ -237,7 +237,7 @@ window.GRIDORA.data = {
       readingTime: '7 min read',
       excerpt: 'Solar capacity has grown faster than the network was planned for. The interesting question is no longer whether storage gets built, but what it is asked to do once it is.',
       image: 'images/projects/solar-farm-aerial',
-      page: 'resources/future-of-energy-storage-india.html'
+      page: 'resources/future-of-energy-storage-india/'
     },
     {
       id: 'bess-safety-essentials',
@@ -249,7 +249,7 @@ window.GRIDORA.data = {
       readingTime: '9 min read',
       excerpt: 'Safety in a battery system is a stack of independent layers, not a single feature. A walk through what each layer does and the questions worth asking a supplier about them.',
       image: 'images/about/technicians-panel',
-      page: 'resources/bess-safety-essentials.html'
+      page: 'resources/bess-safety-essentials/'
     },
     {
       id: 'solar-storage-case-study',
@@ -261,7 +261,7 @@ window.GRIDORA.data = {
       readingTime: '6 min read',
       excerpt: 'A worked example of how a 10 MW solar plant with 20 MWh of storage is sized, sequenced and commissioned — using demonstration figures throughout.',
       image: 'images/resources/solar-rows-field',
-      page: 'resources/solar-storage-case-study.html'
+      page: 'resources/solar-storage-case-study/'
     },
     {
       id: 'battery-lifecycle-management',
@@ -273,7 +273,7 @@ window.GRIDORA.data = {
       readingTime: '8 min read',
       excerpt: 'Capacity fade is predictable if you measure the right things. How state of health is tracked over a twenty-year asset life, and what happens at the end of it.',
       image: 'images/resources/power-transformer',
-      page: 'resources/battery-lifecycle-management.html'
+      page: 'resources/battery-lifecycle-management/'
     },
     {
       id: 'sizing-storage-commercial-site',
@@ -285,7 +285,7 @@ window.GRIDORA.data = {
       readingTime: '6 min read',
       excerpt: 'Sizing starts with a year of interval data, not a capacity number. Working from the load profile backwards to power, energy and the tariff the system has to beat.',
       image: 'images/resources/solar-panels-sky',
-      page: 'resources/sizing-storage-commercial-site.html'
+      page: 'resources/sizing-storage-commercial-site/'
     },
     {
       id: 'microgrid-commissioning-note',
@@ -297,7 +297,7 @@ window.GRIDORA.data = {
       readingTime: '4 min read',
       excerpt: 'A demonstration newsroom entry describing the commissioning sequence for a campus microgrid, from first energisation through to a witnessed islanding test.',
       image: 'images/projects/solar-farm-village',
-      page: 'resources/microgrid-commissioning-note.html'
+      page: 'resources/microgrid-commissioning-note/'
     }
   ]
 };

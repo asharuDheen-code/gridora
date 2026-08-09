@@ -117,6 +117,26 @@ folder handles this in one pass).
 
 ---
 
+## URLs
+
+Pages are published as directories, so they are served without a file extension:
+
+| URL | File |
+| --- | --- |
+| `/` | `index.html` |
+| `/about/` | `about/index.html` |
+| `/products/bess-215/` | `products/bess-215/index.html` |
+
+GitHub Pages redirects `/about` to `/about/` automatically, so both forms work. Canonical tags,
+`og:url` and `sitemap.xml` all use the trailing-slash form, which is the one that actually serves.
+
+Internal links are relative and depth-aware — a page two levels deep links home as `../../` and
+loads CSS from `../../css/style.css`. If you add a page by hand, match the depth of its neighbours.
+
+`404.html` stays at the repository root because that is where GitHub Pages looks for it.
+
+---
+
 ## Running it locally
 
 **Option 1 — just open it.** Double-click `index.html`. Everything works, including the catalogue
@@ -205,7 +225,7 @@ projects: [
     categories: ['utility', 'renewable'],   // must match projectCategories ids
     summary: 'One or two sentences for the card.',
     image: 'images/projects/desert-solar-plant',   // no -width.jpg suffix
-    page: 'projects/solar-storage.html'
+    page: 'projects/solar-storage/'
   },
   …
 ]
@@ -225,7 +245,7 @@ Notes:
   `sitemap.xml` and to the `<noscript>` list on the listing page.
 
 **Solutions are different.** The eight long-form solution sections live as static HTML in
-`solutions.html`, because they are editorial content rather than catalogue records. The short
+`solutions/index.html`, because they are editorial content rather than catalogue records. The short
 summaries on the homepage are in `index.html`.
 
 ---
@@ -247,7 +267,7 @@ two `srcset` entries in the markup, or accept that the browser will download the
 If a file is missing, `js/main.js` swaps in `images/placeholder.svg` — a neutral navy panel — so a
 broken-image icon never appears.
 
-Current photography comes from Wikimedia Commons under the licences listed on `credits.html`. **When
+Current photography comes from Wikimedia Commons under the licences listed on `/credits/`. **When
 you replace an image, remove its row from that page.** When you add one that requires attribution,
 add a row.
 

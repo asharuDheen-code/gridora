@@ -228,7 +228,7 @@ window.GRIDORA = window.GRIDORA || {};
 
     container.innerHTML = V.data.products.map(function (product) {
       var hasPage = Boolean(product.page);
-      var href = hasPage ? base() + product.page : base() + 'contact.html';
+      var href = hasPage ? base() + product.page : base() + 'contact/';
       var cta = hasPage
         ? '<a class="btn btn--outline btn--sm" href="' + esc(href) + '">View details ' + ARROW + '</a>'
         : '<a class="btn btn--outline btn--sm" href="' + esc(href) + '">Request datasheet ' + ARROW + '</a>';
