@@ -1,0 +1,82 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#0f1226}
+  *{box-sizing:border-box}
+  #stage{position:relative;width:1080px;height:1920px;overflow:hidden;
+    font-family:"Manjari","Noto Sans Malayalam",sans-serif;color:#fff}
+  #bg{position:absolute;inset:0}
+  .blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55}
+  #bar{position:absolute;top:70px;left:60px;right:60px;height:14px;border-radius:7px;background:rgba(255,255,255,.18)}
+  #barFill{height:100%;width:0;border-radius:7px;background:linear-gradient(90deg,#ffd23f,#ff6b6b)}
+  #brand{position:absolute;top:110px;left:60px;font:700 34px "Noto Sans Malayalam",sans-serif;letter-spacing:2px;opacity:.85}
+  #card{position:absolute;left:70px;right:70px;top:430px;height:820px;border-radius:56px;
+    background:rgba(255,255,255,.09);border:3px solid rgba(255,255,255,.18);
+    box-shadow:0 40px 120px rgba(0,0,0,.35);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:70px}
+  #num{width:190px;height:190px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font:800 120px "Noto Sans",sans-serif;color:#1b1b2f;background:#ffd23f;box-shadow:0 20px 60px rgba(255,210,63,.45)}
+  #emoji{font-size:200px;line-height:1;font-family:"Noto Color Emoji"}
+  #title{margin-top:40px;font-weight:700;font-size:96px;line-height:1.25;text-align:center;padding:0 40px}
+  #sub{margin-top:34px;font-weight:700;font-size:62px;color:#1b1b2f;background:#ffd23f;padding:18px 40px 10px;border-radius:24px;text-align:center}
+  #cap{position:absolute;left:80px;right:80px;top:1320px;text-align:center;font-weight:700;font-size:52px;line-height:1.45;
+    text-shadow:0 4px 16px rgba(0,0,0,.6)}
+  #cap span{opacity:.35}
+  #cap span.on{opacity:1;color:#fff}
+  #cap span.now{color:#ffd23f}
+</style></head>
+<body><div id="stage">
+  <div id="bg"></div>
+  <div id="bar"><div id="barFill"></div></div>
+  <div id="brand">MANAGEMENT TIPS • മലയാളം</div>
+  <div id="card"><div id="num"></div><div id="emoji"></div><div id="title"></div><div id="sub"></div></div>
+  <div id="cap"></div>
+</div>
+<script>
+let TL=null;
+const $=id=>document.getElementById(id);
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+const easeOut=x=>1-Math.pow(1-clamp(x),3);
+const back=x=>{x=clamp(x);const c=1.9;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const palettes=[["#6a5cff","#ff4fa3","#21d4fd"],["#ff7a18","#af002d","#ffd23f"],["#00b09b","#3a7bd5","#96c93d"],["#8e2de2","#ff0080","#4a00e0"],["#f7971e","#ff4b2b","#6a5cff"]];
+function setup(tl){
+  TL=tl;
+  const bg=$('bg');
+  for(let i=0;i<5;i++){const b=document.createElement('div');b.className='blob';b.id='b'+i;bg.appendChild(b);}
+}
+let lastScene=-1;
+function render(t){
+  const S=TL.scenes;
+  let i=S.length-1; for(let k=0;k<S.length;k++){ if(t<S[k].start+S[k].dur+0.35){i=k;break;} }
+  const sc=S[i], lt=t-sc.start, pal=palettes[i%palettes.length];
+  // background
+  document.getElementById('stage').style.background=`linear-gradient(160deg,#0f1226,${pal[0]}55 60%,#0f1226)`;
+  for(let k=0;k<5;k++){const b=$('b'+k),s=380+k*90;
+    b.style.width=b.style.height=s+'px';b.style.background=pal[k%3];
+    b.style.left=(540+Math.sin(t*0.5+k*1.7)*420-s/2)+'px';b.style.top=(960+Math.cos(t*0.4+k*2.3)*780-s/2)+'px';}
+  $('barFill').style.width=(clamp(t/TL.total)*100)+'%';
+  if(i!==lastScene){
+    lastScene=i;
+    $('num').style.display=sc.num?'flex':'none'; $('num').textContent=sc.num||'';
+    $('emoji').textContent=sc.emoji; $('title').textContent=sc.title; $('sub').textContent=sc.sub;
+    $('cap').innerHTML=sc.say.split(' ').map(w=>`<span>${w}</span>`).join(' ');
+  }
+  // card entry (whoosh in from right, out to left)
+  const inP=easeOut(lt/0.45), outP=clamp((lt-sc.dur-0.05)/0.3);
+  $('card').style.transform=`translateX(${(1-inP)*900-outP*1100}px) rotate(${(1-inP)*8-outP*6}deg)`;
+  $('num').style.transform=`scale(${back((lt-0.2)/0.5)})`;
+  const em=back((lt-(sc.num?0.35:0.15))/0.5);
+  $('emoji').style.transform=`scale(${em}) translateY(${Math.sin(lt*5)*10}px) rotate(${Math.sin(lt*3)*6}deg)`;
+  $('emoji').style.marginTop=sc.num?'30px':'40px';
+  const tp=easeOut((lt-0.45)/0.4);
+  $('title').style.opacity=tp; $('title').style.transform=`translateY(${(1-tp)*60}px)`;
+  const sp=back((lt-sc.dur*0.55)/0.45);
+  $('sub').style.transform=`scale(${sp}) rotate(${-2+Math.sin(lt*4)*1}deg)`;
+  // hook: pulse; cta: shake
+  if(sc.id==='hook') $('title').style.transform+=` scale(${1+Math.sin(lt*8)*0.03*clamp(lt-0.9)})`;
+  // karaoke captions (time proportional to word length)
+  const spans=[...$('cap').children]; const lens=spans.map(s=>s.textContent.length+2); const tot=lens.reduce((a,b)=>a+b,0);
+  let acc=0; const prog=clamp(lt/(sc.dur*0.97))*tot;
+  spans.forEach((s,k)=>{const st=acc;acc+=lens[k];s.className=prog>=acc?'on':(prog>=st?'on now':'');});
+  $('cap').style.opacity=1-outP;
+}
+</script></body></html>
