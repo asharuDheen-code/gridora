@@ -1,0 +1,600 @@
+{
+ "chapters": [
+  {
+   "scene": "hook",
+   "title": "Agency ₹15,000–25,000 vs ₹0"
+  },
+  {
+   "scene": "new",
+   "title": "What's new: Fable 5.2 + Higgsfield 3-day trial"
+  },
+  {
+   "scene": "need",
+   "title": "What you need"
+  },
+  {
+   "scene": "overview",
+   "title": "Step-by-step connector setup"
+  },
+  {
+   "scene": "catch",
+   "title": "The catch: auto-renew + how to cancel"
+  },
+  {
+   "scene": "credits",
+   "title": "Check your credits first"
+  },
+  {
+   "scene": "prompts",
+   "title": "5 ready-to-copy prompts"
+  },
+  {
+   "scene": "tips",
+   "title": "Tips for better results"
+  },
+  {
+   "scene": "recap",
+   "title": "Recap checklist"
+  },
+  {
+   "scene": "cta",
+   "title": "Orbynex: contact"
+  }
+ ],
+ "scenes": [
+  {
+   "id": "hook",
+   "kind": "hook",
+   "label": "AI Video Ads for ₹0",
+   "lines": [
+    {
+     "ml": "ഏജൻസികൾ ഒരു വീഡിയോ ആഡിന് പതിനയ്യായിരം മുതൽ ഇരുപത്തയ്യായിരം രൂപ വരെ വാങ്ങുന്നുണ്ട്.",
+     "en": "Agencies charge ₹15,000 to ₹25,000 for one video ad."
+    },
+    {
+     "ml": "ഇനി നിങ്ങൾക്ക് അത് സ്വന്തമായി, പൂജ്യം രൂപയ്ക്ക് ഉണ്ടാക്കാം.",
+     "en": "Now you can make it yourself, for ₹0."
+    },
+    {
+     "ml": "ഈ വീഡിയോയിൽ ഫുൾ സെറ്റപ്പും, ശ്രദ്ധിക്കേണ്ട ഒരു പ്രധാന ക്യാച്ചും ഞാൻ കാണിച്ചുതരാം.",
+     "en": "In this video I'll show you the full setup, and one important catch."
+    },
+    {
+     "ml": "അവസാനം, നേരിട്ട് കോപ്പി ചെയ്യാവുന്ന അഞ്ച് പ്രോംപ്റ്റുകളും ഉണ്ട്.",
+     "en": "And at the end, five prompts you can copy directly."
+    }
+   ]
+  },
+  {
+   "id": "new",
+   "kind": "new",
+   "label": "01 · What's new",
+   "lines": [
+    {
+     "ml": "ആദ്യം, എന്താണ് പുതിയത് എന്ന് നോക്കാം.",
+     "en": "First, let's see what's new."
+    },
+    {
+     "ml": "നവംബർ ഒൻപതിന്, ക്ലോഡ് ഫേബിൾ ഫൈവ് പോയിന്റ് ടു ലോഞ്ച് ചെയ്തു.",
+     "en": "On 9 November, Claude Fable 5.2 launched."
+    },
+    {
+     "ml": "അതിനോടൊപ്പം, ഹിഗ്സ്ഫീൽഡ് പുതിയ യൂസേഴ്സിന് മൂന്ന് ദിവസത്തെ, അതായത് എഴുപത്തിരണ്ട് മണിക്കൂർ ഫ്രീ ട്രയൽ കൊടുക്കുന്നുണ്ട്.",
+     "en": "Along with it, Higgsfield is giving new users a 3-day, that is 72-hour, free trial."
+    },
+    {
+     "ml": "ഈ ട്രയലിൽ, ടോപ്പ് വീഡിയോ, ഇമേജ്, ഓഡിയോ മോഡലുകൾ അൺലിമിറ്റഡ് ആയി ഉപയോഗിക്കാം എന്നാണ് അവർ പറയുന്നത്.",
+     "en": "They advertise unlimited access to top video, image and audio models during the trial."
+    },
+    {
+     "ml": "ഇത് ക്ലോഡിനുള്ളിൽ, ഹിഗ്സ്ഫീൽഡ് കണക്ടർ വഴിയാണ് പ്രവർത്തിക്കുന്നത്.",
+     "en": "It works inside Claude, through the Higgsfield connector."
+    }
+   ]
+  },
+  {
+   "id": "make",
+   "kind": "make",
+   "label": "01 · What you can make",
+   "lines": [
+    {
+     "ml": "ഇത് ഉപയോഗിച്ച് എന്തൊക്കെ ഉണ്ടാക്കാം?",
+     "en": "What can you make with it?"
+    },
+    {
+     "ml": "പ്രോഡക്റ്റ് ആഡുകൾ, സിനിമാറ്റിക് ഷോട്ടുകൾ,",
+     "en": "Product ads, cinematic shots,"
+    },
+    {
+     "ml": "യു ജി സി സ്റ്റൈൽ കസ്റ്റമർ റിവ്യൂ വീഡിയോകൾ, അനിമേ, പിന്നെ മോഷൻ ഗ്രാഫിക്സ്.",
+     "en": "UGC-style customer review videos, anime, and motion graphics."
+    },
+    {
+     "ml": "ഒരു കാര്യം ഓർക്കുക, ഈ ഓഫറിന് എൻഡ് ഡേറ്റ് പറഞ്ഞിട്ടില്ല. എപ്പോൾ വേണമെങ്കിലും അവസാനിക്കാം.",
+     "en": "Remember, this offer has no published end date. It can end anytime."
+    }
+   ]
+  },
+  {
+   "id": "need",
+   "kind": "need",
+   "label": "02 · What you need",
+   "lines": [
+    {
+     "ml": "ഇനി, തുടങ്ങുന്നതിന് മുമ്പ് നിങ്ങൾക്ക് വേണ്ട മൂന്ന് കാര്യങ്ങൾ.",
+     "en": "Now, three things you need before you start."
+    },
+    {
+     "ml": "ഒന്ന്, ഒരു പെയ്ഡ് ക്ലോഡ് പ്ലാൻ. ഫേബിൾ ഫൈവ് പോയിന്റ് ടു ഉപയോഗിക്കാൻ പെയ്ഡ് പ്ലാൻ വേണം.",
+     "en": "One, a paid Claude plan. You need a paid plan to use Fable 5.2."
+    },
+    {
+     "ml": "രണ്ട്, ഒരു ഹിഗ്സ്ഫീൽഡ് അക്കൗണ്ട്. ഈ ട്രയൽ പുതിയ യൂസേഴ്സിന് മാത്രമാണ്.",
+     "en": "Two, a Higgsfield account. This trial is for new users only."
+    },
+    {
+     "ml": "മൂന്ന്, ട്രയൽ തുടങ്ങാൻ കാർഡ് ചോദിച്ചേക്കാം. അതുകൊണ്ട് ഒരു ഡെബിറ്റ് അല്ലെങ്കിൽ ക്രെഡിറ്റ് കാർഡ് കയ്യിൽ വെക്കുക.",
+     "en": "Three, a card may be asked to start the trial, so keep a debit or credit card ready."
+    }
+   ]
+  },
+  {
+   "id": "overview",
+   "kind": "overview",
+   "label": "03 · Setup",
+   "lines": [
+    {
+     "ml": "ഓക്കെ, ഇനി സ്റ്റെപ്പ് ബൈ സ്റ്റെപ്പ് സെറ്റപ്പ് ചെയ്യാം. ആകെ ആറ് സ്റ്റെപ്പുകൾ ഉണ്ട്.",
+     "en": "Okay, now let's set it up step by step. There are six steps in total."
+    }
+   ]
+  },
+  {
+   "id": "step1",
+   "kind": "step",
+   "n": 1,
+   "mock": "app",
+   "label": "03 · Setup · Step 1 of 6",
+   "title": "Open Connectors",
+   "bullets": [
+    [
+     "Open Claude (web or app)",
+     0
+    ],
+    [
+     "Customize → Connectors",
+     1
+    ]
+   ],
+   "note": "Menu names may vary slightly (check)",
+   "lines": [
+    {
+     "ml": "സ്റ്റെപ്പ് വൺ. വെബിലോ ആപ്പിലോ ക്ലോഡ് ഓപ്പൺ ചെയ്യുക.",
+     "en": "Step one. Open Claude on the web or in the app."
+    },
+    {
+     "ml": "എന്നിട്ട് കസ്റ്റമൈസ് എടുക്കുക, അതിനുള്ളിൽ കണക്ടേഴ്സ് എന്ന ഓപ്ഷൻ ക്ലിക്ക് ചെയ്യുക.",
+     "en": "Then go to Customize, and click Connectors inside it."
+    }
+   ]
+  },
+  {
+   "id": "step2",
+   "kind": "step",
+   "n": 2,
+   "mock": "form",
+   "label": "03 · Setup · Step 2 of 6",
+   "title": "Add custom connector",
+   "bullets": [
+    [
+     "Click “Add custom connector”",
+     0
+    ],
+    [
+     "Name: Higgsfield",
+     1
+    ],
+    [
+     "URL: https://mcp.higgsfield.ai/mcp",
+     2
+    ],
+    [
+     "Link is in the description",
+     3
+    ]
+   ],
+   "lines": [
+    {
+     "ml": "സ്റ്റെപ്പ് ടു. ആഡ് കസ്റ്റം കണക്ടർ ക്ലിക്ക് ചെയ്യുക.",
+     "en": "Step two. Click Add custom connector."
+    },
+    {
+     "ml": "നെയിം ആയി ഹിഗ്സ്ഫീൽഡ് എന്ന് കൊടുക്കുക.",
+     "en": "For the name, enter Higgsfield."
+    },
+    {
+     "ml": "യു ആർ എൽ ആയി, സ്ക്രീനിൽ കാണുന്ന ഈ ലിങ്ക് അതേപോലെ കൊടുക്കുക.",
+     "en": "For the URL, enter this link exactly as shown on screen."
+    },
+    {
+     "ml": "ഈ ലിങ്ക് ഡിസ്ക്രിപ്ഷനിലും ഉണ്ട്. കോപ്പി ചെയ്ത് പേസ്റ്റ് ചെയ്താൽ മതി.",
+     "en": "The link is also in the description. Just copy and paste it."
+    }
+   ]
+  },
+  {
+   "id": "step3",
+   "kind": "step",
+   "n": 3,
+   "mock": "auth",
+   "label": "03 · Setup · Step 3 of 6",
+   "title": "Connect & Allow",
+   "bullets": [
+    [
+     "Click Connect",
+     0
+    ],
+    [
+     "Sign in to Higgsfield",
+     1
+    ],
+    [
+     "Allow permissions",
+     2
+    ]
+   ],
+   "lines": [
+    {
+     "ml": "സ്റ്റെപ്പ് ത്രീ. കണക്ട് ബട്ടൺ ക്ലിക്ക് ചെയ്യുക.",
+     "en": "Step three. Click the Connect button."
+    },
+    {
+     "ml": "ഹിഗ്സ്ഫീൽഡിന്റെ സൈൻ ഇൻ പേജ് തുറക്കും. അവിടെ ലോഗിൻ ചെയ്യുക, അല്ലെങ്കിൽ പുതിയ അക്കൗണ്ട് ഉണ്ടാക്കുക.",
+     "en": "The Higgsfield sign-in page opens. Log in there, or create a new account."
+    },
+    {
+     "ml": "പെർമിഷൻ ചോദിക്കുമ്പോൾ, അലൗ കൊടുക്കുക.",
+     "en": "When it asks for permission, click Allow."
+    }
+   ]
+  },
+  {
+   "id": "step4",
+   "kind": "step",
+   "n": 4,
+   "mock": "trial",
+   "label": "03 · Setup · Step 4 of 6",
+   "title": "Start the free trial",
+   "bullets": [
+    [
+     "Go to higgsfield.ai/mcp",
+     0
+    ],
+    [
+     "Start free trial (3 days)",
+     0
+    ],
+    [
+     "A card may be required",
+     1
+    ]
+   ],
+   "lines": [
+    {
+     "ml": "സ്റ്റെപ്പ് ഫോർ. ഹിഗ്സ്ഫീൽഡ് ഡോട്ട് എ ഐ സ്ലാഷ് എം സി പി എന്ന പേജിൽ പോയി, ഫ്രീ ട്രയൽ സ്റ്റാർട്ട് ചെയ്യുക.",
+     "en": "Step four. Go to higgsfield.ai/mcp and start the free trial."
+    },
+    {
+     "ml": "ഇവിടെ കാർഡ് ഡീറ്റെയിൽസ് ചോദിച്ചേക്കാം.",
+     "en": "It may ask for your card details here."
+    }
+   ]
+  },
+  {
+   "id": "step5",
+   "kind": "step",
+   "n": 5,
+   "mock": "billing",
+   "label": "03 · Setup · Step 5 of 6",
+   "title": "Cancel auto-renew",
+   "warn": true,
+   "bullets": [
+    [
+     "Higgsfield account",
+     1
+    ],
+    [
+     "Subscription / Billing",
+     1
+    ],
+    [
+     "Cancel auto-renew",
+     2
+    ],
+    [
+     "Trial stays active for 3 days",
+     2
+    ]
+   ],
+   "note": "Menu names may vary slightly (check)",
+   "lines": [
+    {
+     "ml": "സ്റ്റെപ്പ് ഫൈവ്. ഇതാണ് ഏറ്റവും പ്രധാനപ്പെട്ട സ്റ്റെപ്പ്.",
+     "en": "Step five. This is the most important step."
+    },
+    {
+     "ml": "ട്രയൽ തുടങ്ങിയ ഉടനെ, ഹിഗ്സ്ഫീൽഡ് അക്കൗണ്ടിൽ സബ്സ്ക്രിപ്ഷൻ അല്ലെങ്കിൽ ബില്ലിംഗ് എടുക്കുക.",
+     "en": "Right after starting the trial, open Subscription or Billing in your Higgsfield account."
+    },
+    {
+     "ml": "അവിടെ ഓട്ടോ റിന്യൂ ക്യാൻസൽ ചെയ്യുക. ക്യാൻസൽ ചെയ്താലും, മൂന്ന് ദിവസം ട്രയൽ ആക്ടീവ് ആയിരിക്കും.",
+     "en": "Cancel auto-renew there. Even after cancelling, the trial stays active for the 3 days."
+    }
+   ]
+  },
+  {
+   "id": "step6",
+   "kind": "step",
+   "n": 6,
+   "mock": "chat",
+   "label": "03 · Setup · Step 6 of 6",
+   "title": "Just ask Claude",
+   "bullets": [
+    [
+     "Type what you want",
+     0
+    ],
+    [
+     "Claude picks the model",
+     2
+    ],
+    [
+     "Writes the prompt + generates",
+     2
+    ]
+   ],
+   "lines": [
+    {
+     "ml": "സ്റ്റെപ്പ് സിക്സ്. ഇനി ക്ലോഡിൽ വന്ന്, നിങ്ങൾക്ക് വേണ്ടത് ചോദിച്ചാൽ മതി.",
+     "en": "Step six. Now come back to Claude and just ask for what you want."
+    },
+    {
+     "ml": "ഉദാഹരണത്തിന്, മേക്ക് എ ടെൻ സെക്കൻഡ് വെർട്ടിക്കൽ ആഡ് ഫോർ മൈ ബേക്കറി.",
+     "en": "For example: “Make a 10-second vertical ad for my bakery.”"
+    },
+    {
+     "ml": "ഏത് മോഡൽ വേണമെന്ന് ക്ലോഡ് തന്നെ തീരുമാനിക്കും, പ്രോംപ്റ്റ് എഴുതും, വീഡിയോ ജനറേറ്റ് ചെയ്യും.",
+     "en": "Claude picks the model, writes the prompt, and generates the video."
+    }
+   ]
+  },
+  {
+   "id": "catch",
+   "kind": "catch",
+   "label": "04 · The catch",
+   "lines": [
+    {
+     "ml": "ഇനി, ഏറ്റവും പ്രധാനപ്പെട്ട ക്യാച്ച്.",
+     "en": "Now, the most important catch."
+    },
+    {
+     "ml": "ഈ ഫ്രീ ട്രയൽ, എഴുപത്തിരണ്ട് മണിക്കൂർ കഴിഞ്ഞാൽ ഓട്ടോമാറ്റിക് ആയി ഒരു പെയ്ഡ് പ്ലാനിലേക്ക് മാറും.",
+     "en": "After 72 hours, this free trial automatically renews into a paid plan."
+    },
+    {
+     "ml": "ഹിഗ്സ്ഫീൽഡിന്റെ അൾട്രാ പ്ലാൻ, ആദ്യ മാസം നാൽപ്പത് ശതമാനം ഡിസ്കൗണ്ടിൽ. ക്യാൻസൽ ചെയ്തില്ലെങ്കിൽ കാർഡിൽ നിന്ന് പൈസ പോകും.",
+     "en": "Higgsfield's Ultra plan, at 40% off the first month. If you don't cancel, your card gets charged."
+    },
+    {
+     "ml": "അതുകൊണ്ട്, സൈൻ അപ്പ് ചെയ്ത ഉടനെ തന്നെ ക്യാൻസൽ ചെയ്യുക. മൂന്ന് ദിവസം കഴിയാൻ കാത്തിരിക്കരുത്.",
+     "en": "So cancel right after you sign up. Don't wait for the 3 days to end."
+    }
+   ]
+  },
+  {
+   "id": "cancel",
+   "kind": "cancel",
+   "label": "04 · How to cancel",
+   "lines": [
+    {
+     "ml": "വഴി ഇതാണ്. ഹിഗ്സ്ഫീൽഡ് അക്കൗണ്ട്, സബ്സ്ക്രിപ്ഷൻ അല്ലെങ്കിൽ ബില്ലിംഗ്, ക്യാൻസൽ ഓട്ടോ റിന്യൂ.",
+     "en": "Here's the path: Higgsfield account, Subscription or Billing, Cancel auto-renew."
+    },
+    {
+     "ml": "ക്യാൻസൽ ആയി എന്ന് സ്ക്രീനിൽ ഉറപ്പ് വരുത്തുക. ഒരു സ്ക്രീൻഷോട്ട് എടുത്ത് വെക്കുന്നതും നല്ലതാണ്.",
+     "en": "Make sure the screen shows it's cancelled. Taking a screenshot is also a good idea."
+    }
+   ]
+  },
+  {
+   "id": "credits",
+   "kind": "credits",
+   "label": "04 · Check your credits",
+   "lines": [
+    {
+     "ml": "രണ്ടാമത്തെ കാര്യം, ക്രെഡിറ്റുകൾ.",
+     "en": "The second thing: credits."
+    },
+    {
+     "ml": "കണക്ടർ വഴിയുള്ള ജനറേഷനുകൾക്ക് ചിലപ്പോൾ ക്രെഡിറ്റ് കുറയാം എന്ന്, ഹിഗ്സ്ഫീൽഡിന്റെ സ്വന്തം ഹെൽപ്പ് പേജിൽ പറയുന്നുണ്ട്.",
+     "en": "Higgsfield's own help page says connector generations may still deduct credits."
+    },
+    {
+     "ml": "അതുകൊണ്ട്, ആദ്യം ഒരു ചെറിയ വീഡിയോ മാത്രം ജനറേറ്റ് ചെയ്യുക. എന്നിട്ട് ക്രെഡിറ്റ് ബാലൻസ് ചെക്ക് ചെയ്യുക.",
+     "en": "So first generate just one short video. Then check your credit balance."
+    },
+    {
+     "ml": "ക്രെഡിറ്റ് കുറയുന്നില്ലെങ്കിൽ മാത്രം, കൂടുതൽ വീഡിയോകൾ ഉണ്ടാക്കുക.",
+     "en": "Only if credits aren't deducted, go ahead and make more videos."
+    }
+   ]
+  },
+  {
+   "id": "prompts",
+   "kind": "pintro",
+   "label": "05 · Demo prompts",
+   "lines": [
+    {
+     "ml": "ഇനി, നേരിട്ട് കോപ്പി ചെയ്ത് ഉപയോഗിക്കാവുന്ന അഞ്ച് പ്രോംപ്റ്റുകൾ. ഓരോ സ്റ്റൈലിനും ഒന്ന് വീതം.",
+     "en": "Now, five prompts you can copy and use directly. One for each style."
+    }
+   ]
+  },
+  {
+   "id": "p1",
+   "kind": "prompt",
+   "n": 1,
+   "style": "Product ad",
+   "hue": "orange",
+   "label": "05 · Prompt 1 of 5",
+   "prompt": "10-second vertical ad for my shoe shop, festive offer 50% off, upbeat",
+   "lines": [
+    {
+     "ml": "ഒന്ന്, പ്രോഡക്റ്റ് ആഡ്. ഷൂ ഷോപ്പിന് വേണ്ടി, ഫെസ്റ്റിവൽ ഓഫർ, ഫിഫ്റ്റി പെർസെന്റ് ഓഫ്, അപ്ബീറ്റ് മൂഡിൽ.",
+     "en": "One, a product ad. For a shoe shop, festive offer, 50% off, in an upbeat mood."
+    },
+    {
+     "ml": "നിങ്ങളുടെ ഷോപ്പിന്റെ പേരും ഓഫറും മാറ്റിക്കൊടുത്താൽ മതി.",
+     "en": "Just change it to your shop's name and offer."
+    }
+   ]
+  },
+  {
+   "id": "p2",
+   "kind": "prompt",
+   "n": 2,
+   "style": "Cinematic",
+   "hue": "gold",
+   "label": "05 · Prompt 2 of 5",
+   "prompt": "Slow-motion cinematic shot of hot tea being poured, Kerala morning, golden light",
+   "lines": [
+    {
+     "ml": "രണ്ട്, സിനിമാറ്റിക്. കേരളത്തിലെ ഒരു രാവിലെ, ഗോൾഡൻ ലൈറ്റിൽ, ചൂട് ചായ ഒഴിക്കുന്ന സ്ലോ മോഷൻ ഷോട്ട്.",
+     "en": "Two, cinematic. A Kerala morning, golden light, a slow-motion shot of hot tea being poured."
+    }
+   ]
+  },
+  {
+   "id": "p3",
+   "kind": "prompt",
+   "n": 3,
+   "style": "UGC review",
+   "hue": "teal",
+   "label": "05 · Prompt 3 of 5",
+   "prompt": "UGC-style customer review of my bakery's plum cake, natural phone camera look",
+   "lines": [
+    {
+     "ml": "മൂന്ന്, യു ജി സി റിവ്യൂ. ബേക്കറിയുടെ പ്ലം കേക്കിനെ കുറിച്ച്, ഒരു കസ്റ്റമർ ഫോണിൽ ഷൂട്ട് ചെയ്തത് പോലെയുള്ള റിവ്യൂ.",
+     "en": "Three, a UGC review. A review of the bakery's plum cake, as if a customer shot it on a phone."
+    }
+   ]
+  },
+  {
+   "id": "p4",
+   "kind": "prompt",
+   "n": 4,
+   "style": "Anime",
+   "hue": "pink",
+   "label": "05 · Prompt 4 of 5",
+   "prompt": "Anime-style 8-second scene of a shopkeeper opening the shop at sunrise",
+   "lines": [
+    {
+     "ml": "നാല്, അനിമേ. സൂര്യോദയത്തിൽ ഒരു കടക്കാരൻ ഷോപ്പ് തുറക്കുന്ന, എട്ട് സെക്കൻഡ് അനിമേ സീൻ.",
+     "en": "Four, anime. An 8-second anime scene of a shopkeeper opening the shop at sunrise."
+    }
+   ]
+  },
+  {
+   "id": "p5",
+   "kind": "prompt",
+   "n": 5,
+   "style": "Motion graphics",
+   "hue": "blue",
+   "label": "05 · Prompt 5 of 5",
+   "prompt": "Motion graphics promo for my mobile shop, bold text, clean transitions",
+   "lines": [
+    {
+     "ml": "അഞ്ച്, മോഷൻ ഗ്രാഫിക്സ്. മൊബൈൽ ഷോപ്പിന് വേണ്ടി, ബോൾഡ് ടെക്സ്റ്റും ക്ലീൻ ട്രാൻസിഷനുകളും ഉള്ള പ്രോമോ.",
+     "en": "Five, motion graphics. A promo for a mobile shop, with bold text and clean transitions."
+    },
+    {
+     "ml": "ഈ അഞ്ച് പ്രോംപ്റ്റുകളും ഡിസ്ക്രിപ്ഷനിൽ കൊടുത്തിട്ടുണ്ട്.",
+     "en": "All five prompts are in the description."
+    }
+   ]
+  },
+  {
+   "id": "tips",
+   "kind": "tips",
+   "label": "06 · Tips",
+   "lines": [
+    {
+     "ml": "ഇനി, നല്ല റിസൾട്ട് കിട്ടാൻ ചില ടിപ്സ്.",
+     "en": "Now, a few tips for good results."
+    },
+    {
+     "ml": "റീൽസിനും ഷോർട്സിനും, നയൻ ബൈ സിക്സ്റ്റീൻ വെർട്ടിക്കൽ സൈസ് ചോദിക്കുക.",
+     "en": "For Reels and Shorts, ask for the 9:16 vertical size."
+    },
+    {
+     "ml": "ഓരോ ക്ലിപ്പും അഞ്ച് മുതൽ പത്ത് സെക്കൻഡ് വരെ മതി. ചെറിയ ക്ലിപ്പുകൾ മാറ്റാനും എളുപ്പമാണ്.",
+     "en": "Keep each clip 5 to 10 seconds. Short clips are also easier to redo."
+    },
+    {
+     "ml": "ഓരോ ക്ലിപ്പും ഉണ്ടായ ഉടനെ ഡൗൺലോഡ് ചെയ്ത് വെക്കുക.",
+     "en": "Download each clip as soon as it's made."
+    },
+    {
+     "ml": "എന്നിട്ട് ഏതെങ്കിലും എഡിറ്റിംഗ് ആപ്പിൽ ക്ലിപ്പുകൾ ഒന്നിച്ച് ചേർക്കുക.",
+     "en": "Then join the clips in any editing app."
+    },
+    {
+     "ml": "അവസാനം, നിങ്ങളുടെ ലോഗോയും ഫോൺ നമ്പറും ആഡ് ചെയ്യാൻ മറക്കരുത്.",
+     "en": "Finally, don't forget to add your logo and phone number."
+    }
+   ]
+  },
+  {
+   "id": "recap",
+   "kind": "recap",
+   "label": "07 · Recap",
+   "lines": [
+    {
+     "ml": "ഒന്നുകൂടി ചുരുക്കി പറയാം.",
+     "en": "Let's recap quickly."
+    },
+    {
+     "ml": "പെയ്ഡ് ക്ലോഡ് പ്ലാൻ. ഹിഗ്സ്ഫീൽഡ് കണക്ടർ ആഡ് ചെയ്തു. സൈൻ ഇൻ ചെയ്ത് അലൗ കൊടുത്തു.",
+     "en": "Paid Claude plan. Higgsfield connector added. Signed in and allowed."
+    },
+    {
+     "ml": "ഫ്രീ ട്രയൽ സ്റ്റാർട്ട് ചെയ്തു. ഓട്ടോ റിന്യൂ ഉടനെ ക്യാൻസൽ ചെയ്തു.",
+     "en": "Free trial started. Auto-renew cancelled right away."
+    },
+    {
+     "ml": "ഒരു ചെറിയ വീഡിയോ ഉണ്ടാക്കി ക്രെഡിറ്റ് ചെക്ക് ചെയ്തു. ഇത്രയും ആയാൽ നിങ്ങൾ റെഡി.",
+     "en": "Made one short video and checked credits. With that, you're ready."
+    }
+   ]
+  },
+  {
+   "id": "cta",
+   "kind": "cta",
+   "label": "Orbynex",
+   "lines": [
+    {
+     "ml": "നിങ്ങളുടെ ബിസിനസിന് വേണ്ടി, വീഡിയോ ആഡുകളും എ ഐ ഓട്ടോമേഷനും ഓർബിനെക്സ് ചെയ്ത് തരും.",
+     "en": "Orbynex can make video ads and AI automation for your business."
+    },
+    {
+     "ml": "വെബ്സൈറ്റ്, ഓർബിനെക്സ് ഡോട്ട് ഐ ഓ. ഫോൺ, സെവൻ സീറോ വൺ ടു, നയൻ ത്രീ സെവൻ, ടു ഫൈവ് സീറോ.",
+     "en": "Website: orbynex.io. Phone: 7012937250."
+    },
+    {
+     "ml": "വീഡിയോ ഇഷ്ടപ്പെട്ടെങ്കിൽ സബ്സ്ക്രൈബ് ചെയ്യുക. എന്തെങ്കിലും സംശയം ഉണ്ടെങ്കിൽ കമന്റ് ചെയ്യുക.",
+     "en": "If you liked the video, subscribe. If you have any doubts, comment below."
+    }
+   ]
+  }
+ ]
+}

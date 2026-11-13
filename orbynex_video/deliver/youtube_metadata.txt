@@ -1,0 +1,58 @@
+TITLE
+Make AI Video Ads for ₹0 with Claude + Higgsfield (3-Day Free Trial) | Full Setup (Malayalam)
+
+DESCRIPTION
+Agencies charge ₹15,000–25,000 for one video ad. Here's how to make yours for ₹0 during Higgsfield's 3-day free trial, inside Claude, using the Higgsfield connector. Full step-by-step setup in Malayalam, plus the catch you must know (auto-renew) and 5 ready-to-copy prompts.
+
+⚠️ Important
+• Claude Fable 5.2 launched on 9 Nov 2026. Using it needs a paid Claude plan.
+• Higgsfield's 72-hour (3-day) free trial is for NEW users. A card may be required.
+• The trial AUTO-RENEWS to a paid Higgsfield plan (Ultra, 40% off the first month) after 72 hours unless you cancel. Cancel auto-renew right after signing up. The trial stays active for the 3 days.
+• Higgsfield's own help page says connector generations may still deduct credits. Test one short generation and check your credits first.
+• The offer has no published end date. It can end anytime.
+
+🔗 Connector URL (copy this)
+https://mcp.higgsfield.ai/mcp
+Free trial page: https://higgsfield.ai/mcp
+
+🛠 Setup steps
+1. Open Claude (web or app) → Customize → Connectors
+2. Add custom connector → Name: Higgsfield → URL: https://mcp.higgsfield.ai/mcp
+3. Connect → sign in to Higgsfield → Allow permissions
+4. Start the free trial at higgsfield.ai/mcp
+5. Right away: Higgsfield account → Subscription / Billing → cancel auto-renew
+6. In Claude, just ask, e.g. "Make a 10-second vertical ad for my bakery"
+
+✍️ 5 ready-to-copy prompts
+1. Product ad: "10-second vertical ad for my shoe shop, festive offer 50% off, upbeat"
+2. Cinematic: "Slow-motion cinematic shot of hot tea being poured, Kerala morning, golden light"
+3. UGC review: "UGC-style customer review of my bakery's plum cake, natural phone camera look"
+4. Anime: "Anime-style 8-second scene of a shopkeeper opening the shop at sunrise"
+5. Motion graphics: "Motion graphics promo for my mobile shop, bold text, clean transitions"
+
+💡 Tips: use 9:16 for Reels/Shorts, keep clips 5–10 s, download each clip, join clips in any editor, add your logo and phone number.
+
+⏱ Chapters
+00:00 Agency ₹15,000–25,000 vs ₹0
+00:18 What's new: Fable 5.2 + Higgsfield 3-day trial
+00:58 What you need
+01:19 Step-by-step connector setup
+02:43 The catch: auto-renew + how to cancel
+03:18 Check your credits first
+03:37 5 ready-to-copy prompts
+04:28 Tips for better results
+04:53 Recap checklist
+05:11 Orbynex: contact
+
+📞 Need video ads or AI automation for your business?
+Orbynex: https://orbynex.io
+Phone / WhatsApp: 7012937250
+
+Subscribe for more AI tutorials in Malayalam, and comment your doubts below.
+
+Disclaimer: On-screen app screens are simple illustrations, not real screenshots. Offers, prices and menu names can change. Check the current terms on Higgsfield's and Claude's sites before you sign up.
+
+#AIVideo #Malayalam #Claude #Higgsfield #VideoAds #AITools #Orbynex
+
+TAGS
+ai video ads, claude, claude fable 5.2, higgsfield, higgsfield mcp, claude connector, ai video malayalam, malayalam tutorial, free ai video, ai ads for small business, video ad kerala, reels ads, youtube shorts ai, ugc ads ai, ai automation, orbynex, claude ai malayalam, mcp connector, ai marketing malayalam, free trial ai video

@@ -12,3 +12,5 @@ Desktop.ini
 
 # Local preview / tooling artefacts
 .playwright-mcp/
+orbynex_video/build/
+orbynex_video/tts/

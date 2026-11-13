@@ -1,0 +1,404 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:'NotoML';src:url('fonts/NotoSansMalayalam.woff2') format('woff2');font-weight:100 900;}
+:root{--cream:#FBF3EA;--orange:#F26B3A;--teal:#19B39B;--ink:#2A211B;--muted:#7A6A5D;--line:#EADCCB;--soft:#FFF8F1;--red:#E0453A;}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:var(--cream)}
+body{font-family:'Inter','NotoML',sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+.abs{position:absolute}
+#bg{position:absolute;inset:0;overflow:hidden}
+.blob{position:absolute;border-radius:50%}
+.scene{position:absolute;inset:0;opacity:0}
+.card{position:absolute;background:#fff;border-radius:28px;box-shadow:0 12px 34px rgba(80,50,20,.08),0 1px 0 rgba(80,50,20,.04)}
+.h1{position:absolute;left:110px;top:150px;font-size:66px;font-weight:800;letter-spacing:-1.5px}
+.h1 .acc{color:var(--orange)}
+.chip{display:inline-flex;align-items:center;gap:10px;padding:10px 22px;border-radius:999px;font-weight:700;font-size:24px;letter-spacing:.5px}
+.chip.o{background:#FDE3D8;color:#C2471B}.chip.t{background:#D3F2EC;color:#0E7E6C}.chip.g{background:#EFE6DC;color:var(--muted)}
+.muted{color:var(--muted)}
+.mono{font-family:'Inter';font-feature-settings:"tnum";}
+.badge{position:absolute;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800}
+#hdr{position:absolute;left:80px;top:44px;height:56px;display:flex;align-items:center;gap:14px;font-size:26px;font-weight:700;color:var(--ink)}
+#hdr .dot{width:16px;height:16px;border-radius:50%;background:var(--orange)}
+#brand{position:absolute;right:80px;top:52px;font-size:26px;font-weight:800;color:var(--ink);letter-spacing:-.3px}
+#brand span{color:var(--orange)}
+#prog{position:absolute;left:0;top:0;height:8px;background:linear-gradient(90deg,var(--orange),var(--teal))}
+#cap{position:absolute;left:50%;top:948px;transform:translateX(-50%);max-width:1380px;padding:16px 38px 20px;border-radius:24px;background:rgba(42,33,27,.92);color:#fff;font-family:'NotoML','Inter';font-size:40px;font-weight:600;line-height:1.35;white-space:nowrap;opacity:0}
+#cap .w{display:inline-block;padding:0 6px;border-radius:10px;margin:0 1px}
+#cap .w.on{background:var(--orange);color:#fff}
+#cap .w.past{color:#fff}#cap .w.fut{color:rgba(255,255,255,.62)}
+/* window mock */
+.win{position:absolute;background:#fff;border-radius:22px;box-shadow:0 20px 50px rgba(80,50,20,.14);overflow:hidden;border:1px solid var(--line)}
+.win .bar{height:56px;background:#F6EEE5;display:flex;align-items:center;padding:0 22px;gap:10px;border-bottom:1px solid var(--line)}
+.win .bar i{width:14px;height:14px;border-radius:50%;background:#E3D4C3;display:block}
+.win .bar .tt{margin-left:16px;font-size:20px;font-weight:600;color:var(--muted)}
+.win .bar .ill{margin-left:auto;font-size:17px;font-weight:700;letter-spacing:1px;color:#fff;background:#B8A796;padding:5px 12px;border-radius:8px;text-transform:uppercase}
+.win .body{position:absolute;left:0;top:56px;right:0;bottom:0}
+.btn{position:absolute;display:flex;align-items:center;justify-content:center;border-radius:14px;font-weight:700;font-size:22px}
+.btn.p{background:var(--ink);color:#fff}.btn.o{background:var(--orange);color:#fff}.btn.t{background:var(--teal);color:#fff}.btn.l{background:#fff;border:2px solid var(--line);color:var(--ink)}
+.field{position:absolute;height:60px;border:2px solid var(--line);border-radius:12px;background:#fff;font-size:24px;display:flex;align-items:center;padding:0 18px;color:var(--ink);white-space:nowrap;overflow:hidden}
+.field.focus{border-color:var(--teal);box-shadow:0 0 0 4px rgba(25,179,155,.15)}
+.lbl{position:absolute;font-size:20px;font-weight:700;color:var(--muted)}
+.caret{display:inline-block;width:3px;height:30px;background:var(--orange);margin-left:2px;vertical-align:middle}
+.bullet{position:absolute;left:110px;display:flex;align-items:center;gap:20px;font-size:32px;font-weight:600;width:660px}
+.bullet .ck{flex:none;width:44px;height:44px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center}
+.pill{position:absolute;border-radius:999px;display:flex;align-items:center;justify-content:center;font-weight:800}
+.ph{position:absolute;border-radius:10px;background:#F1E8DE}
+</style></head>
+<body>
+<div id="bg"></div>
+<div id="prog"></div>
+<div id="hdr"><div class="dot"></div><div id="hdrt"></div></div>
+<div id="brand">orbynex<span>.io</span></div>
+<div id="stage"></div>
+<div id="cap"></div>
+<script>
+const D=window.DATA; const TL=D.timeline; const SC=D.script.scenes;
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const easeOut=x=>1-Math.pow(1-clamp(x),3);
+const ease=x=>{x=clamp(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
+const back=x=>{x=clamp(x);const c1=1.6,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+function el(tag,cls,parent,html,style){const e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;if(style)Object.assign(e.style,style);if(parent)parent.appendChild(e);return e}
+const UNITLESS=new Set(['fontWeight','zIndex','opacity','lineHeight','flex']);function px(o){const r={};for(const k in o)r[k]=(typeof o[k]==='number'&&!UNITLESS.has(k))?o[k]+'px':o[k];return r}
+function pop(e,s,dur=.45){if(s<=0){e.style.opacity=0;e.style.transform='scale(.7)';return}e.style.opacity=clamp(s/.18);e.style.transform=`scale(${.7+.3*back(s/dur)})`}
+function slide(e,s,dy=36,dx=0,dur=.5){const p=easeOut(s/dur);e.style.opacity=s<=0?0:p;e.style.transform=`translate(${dx*(1-p)}px,${dy*(1-p)}px)`}
+function fade(e,s,dur=.35){e.style.opacity=s<=0?0:clamp(s/dur)}
+function typed(text,s,dur){const p=clamp(s/dur);return text.slice(0,Math.round(text.length*p))}
+const CHECK='<svg width="26" height="26" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const ARROW='<svg width="60" height="40" viewBox="0 0 60 40"><path d="M4 20h44M36 8l12 12-12 12" stroke="#C9B6A2" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const WARN=c=>`<svg width="64" height="64" viewBox="0 0 24 24"><path d="M12 3l10 18H2z" fill="${c}"/><rect x="11" y="9" width="2" height="6.5" rx="1" fill="#fff"/><circle cx="12" cy="18" r="1.3" fill="#fff"/></svg>`;
+const PHONE='<svg width="44" height="44" viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 013 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z" fill="#fff"/></svg>';
+const GLOBE='<svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18"/></svg>';
+
+/* ---------- background ---------- */
+const bg=document.getElementById('bg');
+const blobs=[[1650,-120,620,'rgba(242,107,58,.10)'],[-180,700,560,'rgba(25,179,155,.10)'],[900,980,420,'rgba(242,107,58,.05)']].map(([x,y,r,c])=>el('div','blob',bg,null,px({left:x,top:y,width:r,height:r,background:`radial-gradient(circle, ${c} 0%, rgba(0,0,0,0) 70%)`})));
+function bgUpdate(t){blobs.forEach((b,i)=>{b.style.transform=`translate(${Math.sin(t*.13+i*2)*40}px,${Math.cos(t*.11+i)*30}px)`})}
+
+/* ---------- cursor ---------- */
+function cursor(parent,keys){
+  const c=el('div','abs',parent,'<svg width="44" height="54" viewBox="0 0 22 27"><path d="M2 2l17 11.5-7.6 1.4 4.4 8.6-3.3 1.6-4.4-8.6L2 22z" fill="#2A211B" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>',{zIndex:50,left:0,top:0});
+  const rip=el('div','abs',parent,null,{zIndex:49,width:'70px',height:'70px',borderRadius:'50%',border:'5px solid var(--orange)',opacity:0});
+  return function(lt){
+    if(!keys.length||lt<keys[0].t-0.3){c.style.opacity=0;rip.style.opacity=0;return}
+    c.style.opacity=clamp((lt-keys[0].t+.3)/.3);
+    let x=keys[0].x,y=keys[0].y;
+    for(let i=1;i<keys.length;i++){const a=keys[i-1],b=keys[i];
+      if(lt>=b.t){x=b.x;y=b.y;continue}
+      if(lt>a.t){const mv=b.mv||.6;const p=ease((lt-(b.t-mv))/mv);if(lt>b.t-mv){x=a.x+(b.x-a.x)*p;y=a.y+(b.y-a.y)*p}else{x=a.x;y=a.y}}break}
+    c.style.transform=`translate(${x-4}px,${y-3}px)`;
+    let ro=0,rs=1;for(const k of keys)if(k.click&&lt>=k.t&&lt<k.t+.5){const p=(lt-k.t)/.5;ro=1-p;rs=.4+p*1.1;rip.style.left=(k.x-35)+'px';rip.style.top=(k.y-35)+'px'}
+    rip.style.opacity=ro;rip.style.transform=`scale(${rs})`;
+  }
+}
+function win(parent,x,y,w,h,title){const W=el('div','win',parent,null,px({left:x,top:y,width:w,height:h}));const b=el('div','bar',W,'<i></i><i></i><i></i>');el('div','tt',b,title);el('div','ill',b,'Illustration');const body=el('div','body',W);return {W,body}}
+
+/* ---------- scene builders ---------- */
+const B={};
+B.hook=(S,c)=>{
+  const L=el('div','card',S,null,px({left:150,top:200,width:700,height:420}));
+  el('div','chip g abs',L,'AGENCY',px({left:48,top:48}));
+  const pr=el('div','abs',L,'₹15,000–25,000',px({left:48,top:146,fontSize:74,fontWeight:800,letterSpacing:-2,whiteSpace:'nowrap'}));
+  const st=el('div','abs',L,null,px({left:40,top:190,height:10,width:0,background:'var(--red)',borderRadius:6}));
+  el('div','abs muted',L,'for ONE video ad',px({left:48,top:270,fontSize:36,fontWeight:600}));
+  const vs=el('div','badge',S,'VS',px({left:910,top:360,width:100,height:100,background:'var(--ink)',fontSize:32}));
+  const R=el('div','card',S,null,px({left:1070,top:200,width:700,height:420,border:'4px solid var(--teal)'}));
+  el('div','chip t abs',R,'YOU + AI',px({left:48,top:48}));
+  el('div','abs',R,'₹0<span style="font-size:70px;color:var(--orange)">*</span>',px({left:48,top:110,fontSize:170,fontWeight:800,color:'var(--teal)',letterSpacing:-4}));
+  el('div','abs muted',R,'Claude + Higgsfield connector',px({left:48,top:310,fontSize:34,fontWeight:600}));
+  const row=el('div','abs',S,null,{left:'0',right:'0',top:'690px',display:'flex',justifyContent:'center',gap:'22px',alignItems:'center'});
+  const lab=el('div','',row,'In this video:',px({fontSize:32,fontWeight:700,marginRight:10}));
+  const ch=[['o','Full setup'],['o','The catch'],['t','5 ready prompts']].map(([k,t])=>el('div','chip '+k,row,t,px({fontSize:30,padding:'14px 30px'})));
+  const fn=el('div','abs muted',S,'*During Higgsfield\'s 3-day free trial. A paid Claude plan is needed.',{left:'0',right:'0',top:'815px',textAlign:'center',fontSize:'26px',fontWeight:500});
+  return lt=>{slide(L,lt-c(0),40,-40);fade(vs,lt-c(0,.6));slide(R,lt-c(1),40,40);st.style.width=(easeOut((lt-c(1,.2))/.5)*600)+'px';
+    pr.style.color=lt>c(1,.2)?'#B9AA9C':'var(--ink)';fade(lab,lt-c(2));pop(ch[0],lt-c(2,.25));pop(ch[1],lt-c(2,.6));pop(ch[2],lt-c(3,.2));fade(fn,lt-c(1,.6))}
+};
+B.new=(S,c)=>{
+  const h=el('div','h1',S,'What\'s <span class="acc">new</span>');
+  const mk=(x,tagc,tag,title,sub)=>{const k=el('div','card',S,null,px({left:x,top:265,width:820,height:300}));el('div','chip abs '+tagc,k,tag,px({left:44,top:40}));el('div','abs',k,title,px({left:44,top:112,fontSize:54,fontWeight:800,letterSpacing:-1}));const s=el('div','abs muted',k,sub,px({left:44,top:196,fontSize:30,fontWeight:600,width:740,lineHeight:1.35,borderRadius:8,padding:'2px 6px',marginLeft:-6}));return [k,s]};
+  const [A]=mk(110,'o','LAUNCHED · 9 NOV 2026','Claude Fable 5.2','Needs a paid Claude plan');
+  const [Bc,bs]=mk(990,'t','NEW USERS · 72 HOURS','Higgsfield 3-day free trial','“Unlimited” access to top video, image &amp; audio models');
+  const fl=el('div','abs',S,null,{left:'0',right:'0',top:'640px',display:'flex',justifyContent:'center',alignItems:'center',gap:'18px'});
+  const nodes=[];[['You ask','#fff','var(--ink)'],['Claude','#fff','var(--ink)'],['Higgsfield connector','var(--teal)','#fff'],['Video ✓','var(--orange)','#fff']].forEach(([t,bgc,fc],i)=>{
+    if(i){nodes.push(el('div','',fl,ARROW))}nodes.push(el('div','',fl,t,px({background:bgc,color:fc,padding:'26px 40px',borderRadius:22,fontSize:34,fontWeight:800,boxShadow:'0 10px 28px rgba(80,50,20,.10)'})))});
+  return lt=>{slide(h,lt-c(0));slide(A,lt-c(1));slide(Bc,lt-c(2));const s=lt-c(3);bs.style.background=s>0?`rgba(25,179,155,${.16*clamp(s/.4)})`:'transparent';bs.style.color=s>0?'#0E7E6C':'';
+    nodes.forEach((n,i)=>pop(n,lt-c(4,.04+i*.11)))}
+};
+const ICONS={
+ ad:'<svg width="120" height="120" viewBox="0 0 48 48"><path d="M8 20v8h6l14 8V12L14 20z" fill="#F26B3A"/><path d="M33 17c3 2 3 12 0 14M37 13c6 4 6 18 0 22" stroke="#F26B3A" stroke-width="3" fill="none" stroke-linecap="round"/></svg>',
+ cine:'<svg width="120" height="120" viewBox="0 0 48 48"><rect x="6" y="18" width="36" height="22" rx="3" fill="#2A211B"/><path d="M6 12l34-6 2 8-34 6z" fill="#F26B3A"/><path d="M14 10.6l4 7M24 8.8l4 7M34 7l4 7" stroke="#fff" stroke-width="2.5"/></svg>',
+ ugc:'<svg width="120" height="120" viewBox="0 0 48 48"><rect x="13" y="4" width="22" height="40" rx="5" fill="#19B39B"/><rect x="16" y="9" width="16" height="27" rx="2" fill="#fff"/><circle cx="24" cy="18" r="4" fill="#F26B3A"/><path d="M18 30c1-4 11-4 12 0" fill="#F26B3A"/><circle cx="24" cy="40" r="1.6" fill="#fff"/></svg>',
+ anime:'<svg width="120" height="120" viewBox="0 0 48 48"><path d="M24 4l4.5 13.5L42 22l-13.5 4.5L24 40l-4.5-13.5L6 22l13.5-4.5z" fill="#F26B3A"/><path d="M38 34l1.6 4.4L44 40l-4.4 1.6L38 46l-1.6-4.4L32 40l4.4-1.6z" fill="#19B39B"/></svg>',
+ mg:'<svg width="120" height="120" viewBox="0 0 48 48"><rect x="6" y="6" width="22" height="22" rx="5" fill="#19B39B"/><rect x="20" y="20" width="22" height="22" rx="5" fill="#F26B3A" opacity=".9"/><path d="M10 40h6M10 34h3" stroke="#2A211B" stroke-width="3" stroke-linecap="round"/></svg>'};
+B.make=(S,c)=>{
+  const h=el('div','h1',S,'What you can <span class="acc">make</span>');
+  const items=[['ad','Product ads'],['cine','Cinematic'],['ugc','UGC review'],['anime','Anime'],['mg','Motion graphics']];
+  const tiles=items.map(([k,t],i)=>{const e=el('div','card',S,null,px({left:146+i*332,top:290,width:300,height:330}));el('div','abs',e,ICONS[k],px({left:90,top:52}));el('div','abs',e,t,px({left:0,right:0,top:215,textAlign:'center',fontSize:34,fontWeight:800}));return e});
+  const ban=el('div','card',S,null,px({left:360,top:690,width:1200,height:120,border:'3px solid var(--orange)',display:'flex',alignItems:'center',justifyContent:'center',gap:24,fontSize:36,fontWeight:800}));
+  ban.innerHTML=WARN('#F26B3A')+'<span>No published end date: <span style="color:var(--orange)">it can end anytime</span></span>';
+  const cs=[[1,0],[1,.5],[2,0],[2,.4],[2,.72]];
+  return lt=>{slide(h,lt-c(0));tiles.forEach((e,i)=>pop(e,lt-c(...cs[i])));pop(ban,lt-c(3))}
+};
+B.need=(S,c)=>{
+  const h=el('div','h1',S,'What you <span class="acc">need</span>');
+  const it=[['Paid Claude plan','Needed to use Fable 5.2','var(--orange)'],['Higgsfield account','The trial is for new users','var(--teal)'],['Debit / credit card','May be asked to start the trial','var(--ink)']];
+  const cards=it.map(([t,s,col],i)=>{const e=el('div','card',S,null,px({left:140+i*560,top:300,width:520,height:400}));el('div','badge',e,String(i+1),px({left:44,top:44,width:96,height:96,background:col,fontSize:46}));el('div','abs',e,t,px({left:44,top:190,fontSize:44,fontWeight:800,width:440,letterSpacing:-.5}));el('div','abs muted',e,s,px({left:44,top:262,fontSize:30,fontWeight:600,width:440,lineHeight:1.35}));return e});
+  return lt=>{slide(h,lt-c(0));cards.forEach((e,i)=>slide(e,lt-c(i+1),50))}
+};
+B.overview=(S,c)=>{
+  const h=el('div','h1',S,'Setup in <span class="acc">6 steps</span>');
+  const labels=['Open Connectors','Add custom connector','Connect &amp; Allow','Start free trial','Cancel auto-renew','Ask Claude'];
+  const track=el('div','abs',S,null,px({left:240,top:500,width:1440,height:10,background:'var(--line)',borderRadius:6}));
+  const fill=el('div','abs',S,null,px({left:240,top:500,width:0,height:10,background:'var(--orange)',borderRadius:6}));
+  const bs=labels.map((t,i)=>{const x=240+i*288;const g=el('div','abs',S,null,px({left:x-130,top:420,width:260,height:330}));
+    el('div','badge',g,String(i+1),px({left:80,top:0,width:100,height:100,background:i==4?'var(--red)':'var(--orange)',fontSize:44,boxShadow:'0 0 0 10px var(--cream)'}));
+    el('div','abs',g,t,px({left:0,right:0,top:130,textAlign:'center',fontSize:30,fontWeight:700,lineHeight:1.25}));return g});
+  return lt=>{slide(h,lt-c(0));fill.style.width=1440*easeOut((lt-c(0,.15))/((c(0,.85)-c(0,.15))||1))+'px';bs.forEach((g,i)=>pop(g,lt-c(0,.12+i*.13)))}
+};
+/* --- mocks --- */
+const M={};
+M.app=(body,c)=>{
+  const sb=el('div','abs',body,null,px({left:0,top:0,width:250,bottom:0,background:'#F8F1E9',borderRight:'1px solid var(--line)'}));
+  const items=['＋ New chat','Chats','Projects','Customize'];const it=items.map((t,i)=>el('div','abs',sb,t,px({left:18,top:28+i*66,width:214,height:52,borderRadius:12,display:'flex',alignItems:'center',paddingLeft:16,fontSize:23,fontWeight:600})));
+  const home=el('div','abs',body,'<div style="font-size:36px;font-weight:700;text-align:center;margin-top:170px">How can I help you today?</div>',px({left:250,top:0,right:0,bottom:0}));
+  el('div','field',home,'<span class="muted">Ask anything…</span>',px({left:80,top:290,width:620,height:70}));
+  const menu=el('div','card',body,null,px({left:270,top:205,width:330,height:210,borderRadius:18,boxShadow:'0 14px 40px rgba(80,50,20,.18)',zIndex:5}));
+  el('div','ph',menu,null,px({left:22,top:26,width:200,height:22}));
+  const con=el('div','abs',menu,'Connectors',px({left:12,top:72,width:306,height:56,borderRadius:12,display:'flex',alignItems:'center',paddingLeft:14,fontSize:24,fontWeight:700}));
+  el('div','ph',menu,null,px({left:22,top:160,width:160,height:22}));
+  const page=el('div','abs',body,null,px({left:250,top:0,right:0,bottom:0,background:'#fff'}));
+  el('div','abs',page,'Connectors',px({left:50,top:44,fontSize:40,fontWeight:800}));
+  for(let i=0;i<3;i++){el('div','ph',page,null,px({left:50,top:140+i*90,width:560,height:64}))}
+  const cur=cursor(body,[{t:c(0,.4),x:620,y:520},{t:c(1,.25),x:110,y:255,click:1,mv:.7},{t:c(1,.62),x:150,y:305,click:1,mv:.6}]);
+  return lt=>{const s1=lt-c(1,.25),s2=lt-c(1,.62);it[3].style.background=s1>0?'#FDE3D8':'transparent';
+    menu.style.display=s1>0&&s2<.15?'block':'none';pop(menu,s1,.3);con.style.background=s2>-.25?'#FDE3D8':'transparent';
+    page.style.display=s2>.15?'block':'none';fade(page,s2-.15,.3);cur(lt)}
+};
+M.form=(body,c)=>{
+  const page=el('div','abs',body,null,px({left:0,top:0,right:0,bottom:0}));
+  el('div','abs',page,'Connectors',px({left:50,top:40,fontSize:40,fontWeight:800}));
+  const add=el('div','btn p',page,'Add custom connector',px({left:640,top:36,width:310,height:62}));
+  for(let i=0;i<3;i++)el('div','ph',page,null,px({left:50,top:150+i*90,width:620,height:64}));
+  const row=el('div','abs',page,null,px({left:50,top:150,width:900,height:74,borderRadius:14,border:'2px solid var(--teal)',background:'#F2FBF9',display:'flex',alignItems:'center',paddingLeft:22,fontSize:26,fontWeight:700,gap:14}));
+  row.innerHTML='Higgsfield <span class="muted" style="font-weight:500;font-size:22px">· added</span>';
+  const ov=el('div','abs',body,null,px({left:0,top:0,right:0,bottom:0,background:'rgba(42,33,27,.35)'}));
+  const md=el('div','card',body,null,px({left:120,top:60,width:760,height:520,borderRadius:22}));
+  el('div','abs',md,'Add custom connector',px({left:44,top:36,fontSize:34,fontWeight:800}));
+  el('div','lbl',md,'Name',px({left:44,top:116}));const f1=el('div','field',md,'',px({left:44,top:146,width:672}));
+  el('div','lbl',md,'URL',px({left:44,top:236}));const f2=el('div','field',md,'',px({left:44,top:266,width:672,fontSize:25}));
+  el('div','btn l',md,'Cancel',px({left:380,top:410,width:150,height:62}));const ok=el('div','btn o',md,'Add',px({left:552,top:410,width:164,height:62}));
+  const cur=cursor(body,[{t:c(0,.1),x:500,y:420},{t:c(0,.55),x:800,y:68,click:1,mv:.6},{t:c(1,.1),x:400,y:236,click:1,mv:.5},{t:c(2,.05),x:400,y:356,click:1,mv:.5},{t:c(3,.65),x:640,y:500,click:1,mv:.7}]);
+  const N='Higgsfield',U='https://mcp.higgsfield.ai/mcp';
+  return lt=>{const open=lt>c(0,.6)&&lt<c(3,.7);ov.style.display=md.style.display=open?'block':'none';fade(ov,lt-c(0,.6),.25);pop(md,lt-c(0,.6),.35);
+    const s1=lt-c(1,.15),s2=lt-c(2,.1);f1.innerHTML=typed(N,s1,(c(1,.75)-c(1,.15)))+(s1>0&&s2<0?'<span class="caret"></span>':'');f1.className='field'+(s1>0&&s2<0?' focus':'');
+    f2.innerHTML=typed(U,s2,(c(2,.85)-c(2,.1)))+(s2>0?'<span class="caret"></span>':'');f2.className='field'+(s2>0?' focus':'');ok.style.transform=Math.abs(lt-c(3,.65))<.12?'scale(.94)':'';
+    row.style.display=lt>c(3,.7)?'flex':'none';pop(row,lt-c(3,.7),.35);cur(lt)}
+};
+M.auth=(body,c)=>{
+  const p1=el('div','abs',body,null,px({left:0,top:0,right:0,bottom:0}));
+  el('div','abs',p1,'Connectors',px({left:50,top:40,fontSize:40,fontWeight:800}));
+  const row=el('div','abs',p1,null,px({left:50,top:140,width:900,height:90,borderRadius:16,border:'2px solid var(--line)'}));
+  el('div','abs',row,'Higgsfield',px({left:28,top:26,fontSize:30,fontWeight:800}));
+  const cb=el('div','btn o',row,'Connect',px({left:690,top:16,width:180,height:56}));
+  for(let i=0;i<2;i++)el('div','ph',p1,null,px({left:50,top:270+i*90,width:620,height:64}));
+  const p2=el('div','abs',body,null,px({left:0,top:0,right:0,bottom:0,background:'#FBF7F2'}));
+  el('div','abs muted',p2,'higgsfield.ai · sign in',px({left:30,top:20,fontSize:20,fontWeight:600}));
+  const sc=el('div','card',p2,null,px({left:250,top:90,width:500,height:430}));
+  el('div','abs',sc,'Sign in to Higgsfield',px({left:40,top:40,fontSize:34,fontWeight:800}));
+  el('div','lbl',sc,'Email',px({left:40,top:120}));el('div','field',sc,'<span class="muted">you@example.com</span>',px({left:40,top:150,width:420}));
+  el('div','lbl',sc,'Password',px({left:40,top:236}));el('div','field',sc,'<span class="muted">••••••••••</span>',px({left:40,top:266,width:420}));
+  el('div','btn p',sc,'Continue',px({left:40,top:352,width:420,height:58}));
+  const p3=el('div','abs',body,null,px({left:0,top:0,right:0,bottom:0,background:'#FBF7F2'}));
+  const pc=el('div','card',p3,null,px({left:200,top:110,width:600,height:380}));
+  el('div','abs',pc,'Allow access?',px({left:44,top:44,fontSize:38,fontWeight:800}));
+  el('div','abs muted',pc,'Claude wants to use your Higgsfield account to generate videos, images and audio.',px({left:44,top:110,width:510,fontSize:25,fontWeight:500,lineHeight:1.4}));
+  el('div','btn l',pc,'Deny',px({left:200,top:270,width:160,height:62}));el('div','btn t',pc,'Allow',px({left:380,top:270,width:176,height:62}));
+  const ok=el('div','pill',body,'✓ Connected',px({left:350,top:540,width:300,height:72,background:'var(--teal)',color:'#fff',fontSize:32,zIndex:20}));
+  const cur=cursor(body,[{t:c(0,.15),x:520,y:420},{t:c(0,.6),x:830,y:200,click:1,mv:.6},{t:c(1,.75),x:500,y:500,click:1,mv:.8},{t:c(2,.35),x:670,y:440,click:1,mv:.5}]);
+  return lt=>{const a=lt-c(0,.7),b=lt-c(1,.85);p2.style.display=a>0&&b<0?'block':'none';fade(p2,a,.3);p3.style.display=b>0?'block':'none';fade(p3,b,.3);
+    cb.style.transform=Math.abs(lt-c(0,.6))<.12?'scale(.94)':'';pop(ok,lt-c(2,.5),.4);cur(lt)}
+};
+M.trial=(body,c)=>{
+  el('div','abs',body,null,px({left:0,top:0,right:0,bottom:0,background:'#FBF7F2'}));
+  const k=el('div','card',body,null,px({left:200,top:70,width:600,height:500}));
+  el('div','chip t abs',k,'NEW USERS',px({left:44,top:44}));
+  el('div','abs',k,'MCP connector<br>free trial',px({left:44,top:110,fontSize:46,fontWeight:800,lineHeight:1.15}));
+  el('div','abs muted',k,'3 days · 72 hours',px({left:44,top:240,fontSize:30,fontWeight:600}));
+  const sb=el('div','btn o',k,'Start free trial',px({left:44,top:330,width:512,height:76,fontSize:28}));
+  const cd=el('div','card',body,null,px({left:200,top:70,width:600,height:500}));
+  el('div','abs',cd,'Card details',px({left:44,top:44,fontSize:38,fontWeight:800}));
+  el('div','lbl',cd,'Card number',px({left:44,top:124}));el('div','field',cd,'<span class="muted">•••• •••• •••• ••••</span>',px({left:44,top:154,width:512}));
+  el('div','field',cd,'<span class="muted">MM / YY</span>',px({left:44,top:244,width:246}));el('div','field',cd,'<span class="muted">CVC</span>',px({left:310,top:244,width:246}));
+  el('div','abs',cd,'A card may be required. Auto-renews after 72 h unless cancelled.',px({left:44,top:340,width:512,fontSize:23,fontWeight:600,color:'#C2471B',lineHeight:1.4}));
+  const cur=cursor(body,[{t:c(0,.3),x:700,y:560},{t:c(0,.8),x:420,y:440,click:1,mv:.7}]);
+  return lt=>{const s=lt-c(1,0);cd.style.display=s>0?'block':'none';pop(cd,s,.4);sb.style.transform=Math.abs(lt-c(0,.8))<.12?'scale(.95)':'';cur(lt)}
+};
+M.billing=(body,c)=>{
+  const nav=el('div','abs',body,null,px({left:0,top:0,width:270,bottom:0,background:'#F8F1E9',borderRight:'1px solid var(--line)'}));
+  const ni=['Profile','Subscription / Billing','Credits'].map((t,i)=>el('div','abs',nav,t,px({left:16,top:30+i*70,width:238,height:56,borderRadius:12,display:'flex',alignItems:'center',paddingLeft:16,fontSize:22,fontWeight:700})));
+  const pg=el('div','abs',body,null,px({left:270,top:0,right:0,bottom:0}));
+  el('div','abs',pg,'Subscription',px({left:44,top:36,fontSize:38,fontWeight:800}));
+  const pc=el('div','abs',pg,null,px({left:44,top:110,width:640,height:300,borderRadius:20,border:'2px solid var(--line)'}));
+  el('div','abs',pc,'Free trial · 72 hours',px({left:32,top:28,fontSize:30,fontWeight:800}));
+  el('div','abs muted',pc,'Then auto-renews: Ultra plan<br>(40% off the first month)',px({left:32,top:80,fontSize:24,fontWeight:600,lineHeight:1.4}));
+  const tg=el('div','abs',pc,null,px({left:32,top:180,fontSize:24,fontWeight:700,display:'flex',alignItems:'center',gap:14}));
+  const cbtn=el('div','btn l',pg,'Cancel auto-renew',px({left:44,top:440,width:300,height:64,borderColor:'var(--red)',color:'var(--red)'}));
+  const done=el('div','abs',pg,'✓ Auto-renew cancelled. Trial active for 3 days.',px({left:44,top:530,width:640,height:64,borderRadius:14,background:'#D3F2EC',color:'#0E7E6C',fontSize:24,fontWeight:800,display:'flex',alignItems:'center',paddingLeft:22}));
+  const cur=cursor(body,[{t:c(1,.1),x:600,y:560},{t:c(1,.45),x:150,y:128,click:1,mv:.6},{t:c(2,.25),x:200,y:472,click:1,mv:.8}]);
+  return lt=>{const s=lt-c(1,.45),k=lt-c(2,.25);ni[1].style.background=s>0?'#FDE3D8':'transparent';pg.style.display=s>0?'block':'none';fade(pg,s,.3);
+    const on=k<0;tg.innerHTML=`Auto-renew <span style="display:inline-block;width:78px;height:42px;border-radius:21px;background:${on?'var(--orange)':'#CFC3B6'};position:relative"><span style="position:absolute;top:5px;left:${on?41:5}px;width:32px;height:32px;border-radius:50%;background:#fff"></span></span> <b style="color:${on?'var(--orange)':'var(--muted)'}">${on?'ON':'OFF'}</b>`;
+    pop(done,k-.15,.4);cur(lt)}
+};
+M.chat=(body,c,sceneEnd)=>{
+  const inp=el('div','field',body,'',px({left:60,top:540,width:880,height:72,fontSize:25}));
+  el('div','abs muted',body,'Higgsfield connected',px({left:60,top:500,fontSize:18,fontWeight:700,color:'#0E7E6C'}));
+  const ub=el('div','abs',body,'Make a 10-second vertical ad for my bakery',px({right:60,top:40,maxWidth:640,padding:'20px 26px',borderRadius:22,background:'#F1E8DE',fontSize:26,fontWeight:600}));
+  const ar=el('div','abs',body,null,px({left:60,top:150,width:880}));
+  const l1=el('div','',ar,'✓ Choosing a video model',px({fontSize:25,fontWeight:700,color:'#0E7E6C',marginBottom:14}));
+  const l2=el('div','',ar,'✓ Writing the prompt',px({fontSize:25,fontWeight:700,color:'#0E7E6C',marginBottom:14}));
+  const l3=el('div','',ar,'Generating video…',px({fontSize:25,fontWeight:700,marginBottom:14}));
+  const bar=el('div','',ar,'<div style="height:100%;width:0;background:linear-gradient(90deg,var(--orange),var(--teal));border-radius:8px"></div>',px({width:420,height:16,background:'#F1E8DE',borderRadius:8}));
+  const th=el('div','abs',body,'<svg width="56" height="56" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(255,255,255,.9)"/><path d="M10 8l6 4-6 4z" fill="#F26B3A"/></svg>',px({left:560,top:150,width:180,height:320,borderRadius:18,background:'linear-gradient(160deg,#F9C59B,#F26B3A 60%,#9C3A17)',display:'flex',alignItems:'center',justifyContent:'center'}));
+  const tl=el('div','abs muted',body,'bakery_ad.mp4 · 10 s · 9:16',px({left:760,top:430,fontSize:18,fontWeight:700,width:200}));
+  const T=D.prompt_typing;
+  return lt=>{const s=lt-c(1,.02),d=c(1,.8)-c(1,.02);const sent=lt>c(1,.9);inp.innerHTML=sent?'<span class="muted">Ask anything…</span>':(s>0?typed(ub.textContent,s,d)+'<span class="caret"></span>':'<span class="muted">Ask anything…</span>');inp.className='field'+(s>0&&!sent?' focus':'');
+    pop(ub,lt-c(1,.9),.35);fade(l1,lt-c(2,.05));fade(l2,lt-c(2,.3));fade(l3,lt-c(2,.5));fade(bar,lt-c(2,.5));
+    const g0=c(2,.5),g1=sceneEnd-1.3;bar.firstChild.style.width=(clamp((lt-g0)/(g1-g0))*100)+'%';
+    if(lt>g1){l3.innerHTML='✓ Video ready';l3.style.color='#0E7E6C'}else{l3.innerHTML='Generating video…';l3.style.color=''}
+    pop(th,lt-g1,.45);fade(tl,lt-g1-.2)}
+};
+B.step=(S,c,sc,end)=>{let rib=null;
+  const col=sc.warn?'var(--red)':'var(--orange)';
+  const bd=el('div','badge',S,String(sc.n),px({left:110,top:150,width:120,height:120,background:col,fontSize:60}));
+  const bars=el('div','abs',S,null,px({left:258,top:196,display:'flex',gap:10}));
+  for(let i=1;i<=6;i++)el('div','',bars,null,px({width:46,height:12,borderRadius:6,background:i<=sc.n?col:'var(--line)'}));
+  el('div','abs muted',S,`STEP ${sc.n} OF 6`,px({left:258,top:150,fontSize:24,fontWeight:800,letterSpacing:2}));
+  const tt=el('div','abs',S,sc.title,px({left:110,top:310,width:660,fontSize:54,fontWeight:800,lineHeight:1.12,letterSpacing:-1,color:sc.warn?'var(--red)':'var(--ink)'}));
+  const per={};const bl=sc.bullets.map(([t,li],k)=>{per[li]=(per[li]||0);const f=.05+per[li]*.35;per[li]++;
+    const isUrl=t.startsWith('URL:');const e=el('div','bullet',S,`<div class="ck">${CHECK}</div><div style="${isUrl?'font-size:27px':''}">${isUrl?'URL:<br><span style="font-weight:800;color:var(--orange)">'+t.slice(5)+'</span>':t}</div>`,{top:(470+k*92)+'px'});return [e,li,f]});
+  const note=sc.note?el('div','abs muted',S,sc.note,px({left:110,top:845,fontSize:22,fontWeight:600})):null;
+  const ww={app:1000,form:1000,auth:1000,trial:1000,billing:1000,chat:1000};
+  const titles={app:'Claude',form:'Claude · Connectors',auth:'Claude · Connectors',trial:'higgsfield.ai/mcp',billing:'Higgsfield account',chat:'Claude'};
+  const {W,body}=win(S,820,150,1000,690,titles[sc.mock]);
+  const upd=M[sc.mock](body,c,end);
+  if(sc.warn){rib=el('div','pill',S,'RIGHT AWAY · MOST IMPORTANT',px({left:110,top:392,width:470,height:52,background:'#FBE0DC',color:'var(--red)',fontSize:22,letterSpacing:1.5}))}
+  return lt=>{pop(bd,lt-c(0,0));slide(tt,lt-c(0,0),30);slide(W,lt-c(0,0),0,60,.6);bl.forEach(([e,li,f])=>slide(e,lt-c(li,f),0,-30));if(note)fade(note,lt-c(0,.5));if(rib)pop(rib,lt-c(0,.5));upd(lt)}
+};
+B.catch=(S,c)=>{
+  const h=el('div','abs',S,WARN('#E0453A')+'<span>The catch: <span style="color:var(--red)">auto-renew</span></span>',px({left:110,top:140,fontSize:66,fontWeight:800,display:'flex',alignItems:'center',gap:24,letterSpacing:-1.5}));
+  const tr=el('div','abs',S,null,px({left:260,top:395,width:1400,height:16,background:'var(--line)',borderRadius:8}));
+  const fi=el('div','abs',S,null,px({left:260,top:395,width:0,height:16,background:'linear-gradient(90deg,var(--teal),var(--orange))',borderRadius:8}));
+  const n0=el('div','abs',S,'<div class="badge" style="position:relative;width:56px;height:56px;background:var(--teal);margin:0 auto"></div><div style="margin-top:14px">Sign up<br><span class="muted" style="font-size:24px">0 h</span></div>',px({left:160,top:375,width:200,textAlign:'center',fontSize:28,fontWeight:800}));
+  const mid=el('div','abs',S,'Free trial · 3 days',px({left:760,top:330,width:400,textAlign:'center',fontSize:30,fontWeight:800,color:'#0E7E6C'}));
+  const n1=el('div','abs',S,'<div class="badge" style="position:relative;width:56px;height:56px;background:var(--red);margin:0 auto"></div><div style="margin-top:14px">Auto-renews<br><span class="muted" style="font-size:24px">72 h</span></div>',px({left:1560,top:375,width:200,textAlign:'center',fontSize:28,fontWeight:800}));
+  const pl=el('div','card',S,null,px({left:410,top:545,width:1100,height:130,display:'flex',alignItems:'center',justifyContent:'center',gap:30,fontSize:36,fontWeight:800}));
+  pl.innerHTML='Paid Higgsfield <span style="color:var(--orange)">Ultra</span> plan <span class="chip o" style="font-size:28px">40% off 1st month</span>';
+  const ch=el('div','abs',S,'💳 Card charged if you don\'t cancel'.replace('💳 ',''),px({left:0,right:0,top:690,textAlign:'center',fontSize:30,fontWeight:700,color:'var(--red)'}));
+  const stp=el('div','pill',S,'Cancel right after you sign up',px({left:510,top:760,width:900,height:96,background:'var(--red)',color:'#fff',fontSize:42,boxShadow:'0 14px 30px rgba(224,69,58,.3)'}));
+  return lt=>{slide(h,lt-c(0));fade(tr,lt-c(1));pop(n0,lt-c(1));fade(mid,lt-c(1,.3));fi.style.width=1400*easeOut((lt-c(1,.05))/((c(1,.85)-c(1,.05))))+'px';pop(n1,lt-c(1,.8));
+    slide(pl,lt-c(2));fade(ch,lt-c(2,.6));pop(stp,lt-c(3))}
+};
+B.cancel=(S,c)=>{
+  const h=el('div','h1',S,'How to <span class="acc">cancel</span>');
+  const row=el('div','abs',S,null,{left:'0',right:'0',top:'340px',display:'flex',justifyContent:'center',alignItems:'center',gap:'14px'});
+  const steps=[['Higgsfield account','#fff','var(--ink)'],['Subscription / Billing','#fff','var(--ink)'],['Cancel auto-renew','var(--red)','#fff'],['✓ Trial active 3 days','var(--teal)','#fff']];
+  const ns=[];steps.forEach(([t,b,f],i)=>{if(i)ns.push(el('div','',row,ARROW));ns.push(el('div','',row,t,px({background:b,color:f,padding:'30px 34px',borderRadius:22,fontSize:32,fontWeight:800,boxShadow:'0 10px 28px rgba(80,50,20,.10)',whiteSpace:'nowrap'})))});
+  const tips=[['Check the screen says “cancelled”','var(--teal)'],['Take a screenshot as proof','var(--orange)']].map(([t,col],i)=>{const e=el('div','card',S,null,px({left:260+i*720,top:580,width:680,height:150,display:'flex',alignItems:'center',gap:24,paddingLeft:40,fontSize:34,fontWeight:700}));e.innerHTML=`<div class="badge" style="position:relative;flex:none;width:64px;height:64px;background:${col}">${CHECK}</div><span>${t}</span>`;return e});
+  const cs=[[0,.12],[0,.2],[0,.3],[0,.42],[0,.6],[0,.7],[0,.88]];
+  return lt=>{slide(h,lt-c(0));ns.forEach((n,i)=>pop(n,lt-c(...cs[i])));slide(tips[0],lt-c(1));slide(tips[1],lt-c(1,.55))}
+};
+B.credits=(S,c)=>{
+  const h=el('div','h1',S,'Check your <span class="acc">credits</span> first');
+  const q=el('div','card',S,null,px({left:110,top:280,width:1700,height:170,borderLeft:'12px solid var(--orange)'}));
+  el('div','abs muted',q,'FROM HIGGSFIELD\'S OWN HELP PAGE',px({left:48,top:30,fontSize:22,fontWeight:800,letterSpacing:2}));
+  el('div','abs',q,'Connector generations <span style="color:var(--orange)">may still deduct credits.</span>',px({left:48,top:76,fontSize:44,fontWeight:800,letterSpacing:-.5}));
+  const it=[['1','Generate ONE short clip','var(--teal)'],['2','Check your credit balance','var(--orange)'],['3','Not deducted? Make more','var(--ink)']];
+  const cs=it.map(([n,t,col],i)=>{const e=el('div','card',S,null,px({left:110+i*580,top:520,width:540,height:250}));el('div','badge',e,n,px({left:40,top:40,width:80,height:80,background:col,fontSize:38}));el('div','abs',e,t,px({left:40,top:150,width:470,fontSize:36,fontWeight:800,lineHeight:1.2}));return e});
+  const meter=el('div','abs',cs[1],'<div style="height:100%;width:100%;background:var(--teal);border-radius:7px"></div>',px({left:150,top:66,width:340,height:28,background:'#F1E8DE',borderRadius:7}));
+  return lt=>{slide(h,lt-c(0));slide(q,lt-c(1));slide(cs[0],lt-c(2),50);slide(cs[1],lt-c(2,.55),50);slide(cs[2],lt-c(3),50);
+    const s=lt-c(2,.7);meter.firstChild.style.width=(100-8*Math.sin(clamp(s/1.2)*Math.PI))+'%'}
+};
+B.pintro=(S,c)=>{
+  const h=el('div','h1',S,'5 ready-to-copy <span class="acc">prompts</span>');
+  const sub=el('div','abs muted',S,'One per style · all 5 are in the description',px({left:110,top:250,fontSize:34,fontWeight:600}));
+  const st=['Product ad','Cinematic','UGC review','Anime','Motion graphics'];
+  const ch=st.map((t,i)=>{const e=el('div','card',S,null,px({left:110+i*344,top:400,width:320,height:300,display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:26}));
+    e.innerHTML=`<div class="badge" style="position:relative;width:96px;height:96px;background:${i%2?'var(--teal)':'var(--orange)'};font-size:46px">${i+1}</div><div style="font-size:34px;font-weight:800;text-align:center">${t}</div>`;return e});
+  return lt=>{slide(h,lt-c(0));fade(sub,lt-c(0,.1));ch.forEach((e,i)=>pop(e,lt-c(0,.22+i*.13)))}
+};
+const HUES={orange:['#FFD3B5','#F26B3A','#8E2F10'],gold:['#FFE7A8','#E8A33B','#6B3D0E'],teal:['#C8F3EA','#19B39B','#0B5246'],pink:['#FFD6E4','#F06A99','#5A1E5E'],blue:['#CFE3FF','#3D7BF2','#14275E']};
+B.prompt=(S,c,sc,end)=>{
+  const [a,b,d]=HUES[sc.hue];
+  const ph=el('div','abs',S,null,px({left:200,top:150,width:390,height:690,borderRadius:44,background:'#2A211B',padding:14,boxShadow:'0 24px 50px rgba(80,50,20,.22)'}));
+  const scr=el('div','abs',ph,null,px({left:14,top:14,right:14,bottom:14,borderRadius:32,overflow:'hidden',background:`linear-gradient(165deg,${a},${b} 55%,${d})`}));
+  const sh=[0,1,2,3].map(i=>el('div','abs',scr,null,px({width:120+i*50,height:120+i*50,borderRadius:'50%',background:'rgba(255,255,255,.16)'})));
+  el('div','abs',scr,sc.style,px({left:28,bottom:96,right:28,fontSize:44,fontWeight:800,color:'#fff',lineHeight:1.05,textShadow:'0 2px 12px rgba(0,0,0,.2)'}));
+  el('div','abs',scr,'ILLUSTRATION · 9:16',px({left:28,bottom:50,fontSize:17,fontWeight:800,letterSpacing:1.5,color:'rgba(255,255,255,.85)'}));
+  const nb=el('div','badge',S,String(sc.n),px({left:690,top:170,width:96,height:96,background:'var(--orange)',fontSize:46}));
+  const tg=el('div','abs',S,sc.style,px({left:810,top:186,fontSize:52,fontWeight:800,letterSpacing:-1}));
+  const cd=el('div','card',S,null,px({left:690,top:310,width:1130,height:330}));
+  el('div','abs muted',cd,'PROMPT',px({left:50,top:36,fontSize:22,fontWeight:800,letterSpacing:2}));
+  const cp=el('div','abs',cd,'Copy',px({right:36,top:28,padding:'10px 22px',borderRadius:12,border:'2px solid var(--line)',fontSize:22,fontWeight:700,color:'var(--muted)'}));
+  const tx=el('div','abs',cd,'',px({left:50,top:88,width:1030,fontSize:44,fontWeight:700,lineHeight:1.32,letterSpacing:-.4}));
+  const hint=el('div','abs',S,'',px({left:690,top:680,height:90,display:'flex',alignItems:'center',gap:18,fontSize:32,fontWeight:700}));
+  const extra=sc.lines.length>1?(sc.n===1?'✎ Change it to your shop\'s name + offer':'↓ All 5 prompts are in the description'):'↓ Copy it from the description';
+  hint.innerHTML=`<span class="chip ${sc.lines.length>1?'o':'t'}" style="font-size:30px;padding:16px 30px">${extra}</span>`;
+  const t0=c(0,.03),t1=c(0,.8);
+  return lt=>{const T=lt;sh.forEach((e,i)=>{e.style.left=(40+Math.sin(T*.5+i*1.7)*90+i*30)+'px';e.style.top=(60+i*110+Math.cos(T*.4+i)*40)+'px'});
+    scr.style.transform=`scale(${1+.02*Math.sin(T*.6)})`;slide(ph,lt-c(0,0),50);pop(nb,lt-c(0,0));slide(tg,lt-c(0,0),0,-30);slide(cd,lt-c(0,.02),30);
+    const s=lt-t0;const done=lt>t1;tx.innerHTML='“'+typed(sc.prompt,s,t1-t0)+(done?'”':'<span class="caret" style="height:44px"></span>');
+    cp.textContent=done&&lt<t1+1.4?'Copied ✓':'Copy';cp.style.color=done&&lt<t1+1.4?'#0E7E6C':'var(--muted)';
+    pop(hint,sc.lines.length>1?lt-c(1,0):lt-c(0,.85))}
+};
+B.tips=(S,c)=>{
+  const h=el('div','h1',S,'Tips for <span class="acc">better results</span>');
+  const it=[['9:16','Vertical for Reels / Shorts'],['5–10 s','Keep each clip short'],['Save','Download each clip'],['Join','Join clips in any editor'],['Brand','Add your logo + phone number']];
+  const pos=[[140,280],[700,280],[1260,280],[420,560],[980,560]];
+  const cs=it.map(([k,t],i)=>{const e=el('div','card',S,null,px({left:pos[i][0],top:pos[i][1],width:520,height:240}));el('div','pill',e,k,px({left:40,top:40,height:70,padding:'0 30px',background:i%2?'#D3F2EC':'#FDE3D8',color:i%2?'#0E7E6C':'#C2471B',fontSize:36}));el('div','abs',e,t,px({left:40,top:140,width:450,fontSize:34,fontWeight:800,lineHeight:1.2}));return e});
+  return lt=>{slide(h,lt-c(0));cs.forEach((e,i)=>pop(e,lt-c(i+1)))}
+};
+B.recap=(S,c)=>{
+  const h=el('div','h1',S,'<span class="acc">Recap</span> checklist');
+  const it=['Paid Claude plan','Higgsfield connector added','Signed in + Allowed','Free trial started','Auto-renew cancelled','Tested 1 clip + checked credits'];
+  const card=el('div','card',S,null,px({left:110,top:270,width:1700,height:460}));
+  const cs=[[1,.02],[1,.36],[1,.68],[2,.02],[2,.5],[3,.02]];
+  const rows=it.map((t,i)=>{const col=i<3?0:1,r=i%3;const e=el('div','abs',card,null,px({left:60+col*820,top:50+r*130,display:'flex',alignItems:'center',gap:28,fontSize:38,fontWeight:700}));
+    const box=el('div','',e,null,px({width:72,height:72,borderRadius:18,border:'4px solid var(--line)',display:'flex',alignItems:'center',justifyContent:'center',flex:'none'}));el('span','',e,t);return [e,box]});
+  const ready=el('div','pill',S,'You\'re ready!',px({left:760,top:770,width:400,height:96,background:'var(--teal)',color:'#fff',fontSize:44}));
+  return lt=>{slide(h,lt-c(0));slide(card,lt-c(0,.3));rows.forEach(([e,box],i)=>{const s=lt-c(...cs[i]);const on=s>0;box.style.background=on?'var(--teal)':'#fff';box.style.borderColor=on?'var(--teal)':'var(--line)';box.innerHTML=on?CHECK.replace(/26/g,'40'):'';box.style.transform=on?`scale(${.6+.4*back(s/.4)})`:'';e.style.color=on?'var(--ink)':'#B9AA9C'});pop(ready,lt-c(3,.72))}
+};
+B.cta=(S,c)=>{
+  const w=el('div','abs',S,'orbynex<span style="color:var(--orange)">.io</span>',px({left:0,right:0,top:150,textAlign:'center',fontSize:130,fontWeight:800,letterSpacing:-4}));
+  const sub=el('div','abs',S,'Video ads + AI automation for your business',px({left:0,right:0,top:330,textAlign:'center',fontSize:44,fontWeight:700,color:'var(--muted)'}));
+  const k1=el('div','card',S,null,px({left:290,top:440,width:640,height:150,display:'flex',alignItems:'center',gap:28,paddingLeft:40,fontSize:52,fontWeight:800}));
+  k1.innerHTML=`<div class="badge" style="position:relative;flex:none;width:86px;height:86px;background:var(--teal)">${GLOBE}</div>orbynex.io`;
+  const k2=el('div','card',S,null,px({left:990,top:440,width:640,height:150,display:'flex',alignItems:'center',gap:28,paddingLeft:40,fontSize:52,fontWeight:800}));
+  k2.innerHTML=`<div class="badge" style="position:relative;flex:none;width:86px;height:86px;background:var(--orange)">${PHONE}</div><span class="mono">70129 37250</span>`;
+  const b1=el('div','pill',S,'▶  Subscribe',px({left:480,top:660,width:440,height:100,background:'var(--red)',color:'#fff',fontSize:40}));
+  const b2=el('div','pill',S,'💬 Comment your doubts'.replace('💬 ',''),px({left:960,top:660,width:520,height:100,background:'#fff',color:'var(--ink)',fontSize:40,border:'4px solid var(--ink)'}));
+  return lt=>{slide(w,lt-c(0));fade(sub,lt-c(0,.3));pop(k1,lt-c(1));pop(k2,lt-c(1,.45));pop(b1,lt-c(2));pop(b2,lt-c(2,.5))}
+};
+
+/* ---------- build ---------- */
+const stage=document.getElementById('stage');
+const scenes=TL.scenes.map((tl,i)=>{const sc=SC[i];const S=el('div','scene',stage);
+  const c=(li,f=0)=>{const L=tl.lines[Math.min(li,tl.lines.length-1)];return (L.start+(L.end-L.start)*f)-tl.start};
+  const upd=B[sc.kind](S,c,sc,tl.end-tl.start);return {tl,sc,S,upd}});
+/* caption chunks */
+const chunks=[];TL.scenes.forEach(s=>s.lines.forEach(L=>{let cur=[],len=0;const push=()=>{if(cur.length)chunks.push({words:cur,start:cur[0].t0,lineEnd:L.end});cur=[];len=0};
+  L.words.forEach((w,i)=>{if(len+w.w.length>40&&cur.length)push();cur.push(w);len+=w.w.length+1;if(/[,.?]$/.test(w.w)&&len>22&&i<L.words.length-2)push()});push()}));
+chunks.forEach((k,i)=>{const nx=chunks[i+1];k.end=Math.min(k.words[k.words.length-1].t1+.35,nx?nx.start:1e9);if(nx&&nx.start-k.words[k.words.length-1].t1<.7)k.end=nx.start});
+const cap=document.getElementById('cap'),hdrt=document.getElementById('hdrt'),hdr=document.getElementById('hdr'),prog=document.getElementById('prog');
+let lastChunk=-1;
+window.render=function(t){
+  bgUpdate(t);prog.style.width=(t/TL.total*1920)+'px';
+  let cur=null;scenes.forEach(s=>{const lt=t-s.tl.start,dur=s.tl.end-s.tl.start;const vis=lt>=-0.001&&lt<dur;s.S.style.display=vis?'block':'none';
+    if(vis){cur=s;s.S.style.opacity=Math.min(clamp(lt/.35),clamp((dur-lt)/.3));s.upd(lt)}});
+  if(cur){hdrt.textContent=cur.sc.label;hdr.style.opacity=1}
+  const ci=chunks.findIndex(k=>t>=k.start-.05&&t<k.end);
+  if(ci<0){cap.style.opacity=0}else{const k=chunks[ci];cap.style.opacity=1;
+    let on=-1;k.words.forEach((w,j)=>{if(t>=w.t0-.02)on=j});if(on>=0&&t>k.words[on].t1+.25)on=-1;cap.innerHTML=k.words.map((w,j)=>`<span class="w ${j===on?'on':(t>=w.t0?'past':'fut')}">${w.w}</span>`).join(' ')}
+};
+window.READY=document.fonts.ready.then(()=>true);
+</script>
+</body></html>
